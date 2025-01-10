@@ -1,0 +1,41 @@
+TOKENS:
+COMMAND
+FILE
+PIPE
+redirect(left/right)
+
+
+//to-do: add more tokens
+
+
+
+shunting yard:
+2 stacks 
+we7de n7ot fiya l final expression w we7de lal operations
+.
+
+step 1:
+
+initialize envp
+w whatever global values w structs w medre shu
+
+step 2:
+
+tokenization -> linked list
+
+step 3:
+
+shunting yard algo 3al list
+
+step 4
+
+AST 
+
+step 5
+
+built ins
+
+step 6??
+
+execute???
+
