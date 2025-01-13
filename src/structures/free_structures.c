@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   free_structures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/13 06:54:14 by jmeouchy         ###   ########.fr       */
+/*   Created: 2025/01/13 08:38:44 by jmeouchy          #+#    #+#             */
+/*   Updated: 2025/01/13 11:30:43 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "../../includes/structures.h"
 
-# include "structures.h"
+void	free_list(t_list *list)
+{
+	t_list_node	*current;
+	t_list_node	*next;
 
-
-
-#endif
+	current = list->head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	list->head = NULL;
+	free(list);
+	return ;
+}

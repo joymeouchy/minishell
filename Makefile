@@ -5,8 +5,7 @@ CC = gcc
 CFLAGS = -Werror -Wall -Wextra -g
 LFLAGS= -lreadline -L/usr/local/opt/readline/Lib -I/usr/local/opt/readline/include
 
-SRC =   main.c \
-		utils.c \
+SRC =   $(wildcard *.c)
         
 OBJ = $(SRC:.c=.o)
 
