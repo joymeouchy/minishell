@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/13 13:54:56 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:40:28 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int split_redirections(char *input, t_list *list, int start, int *i)
 	}
 	else if (input[*i] == '<' || input[*i] == '>')
 	{
+		printf("hiii");
 		insert_at_end_list(list, ft_substr(input, start, *i - start));
 		start = *i;
 		insert_at_end_list(list, ft_substr(input, start, *i - start + 1));
@@ -60,7 +61,7 @@ int split_symbols(char *input, t_list *list, int start, int *i)
 	{
 		insert_at_end_list(list, ft_substr(input, start, *i - start));
 		while (input[*i] == ' ')
-			i++;
+			(*i)++;
 		start = *i;
 	}
 	return (start);
