@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/13 11:29:06 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:51:46 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef	enum e_tokens
+{
+	PIPE = 0,
+	COMMAND = 1,
+	LEFT_REDIRECTION = 2,
+	RIGHT_REDIRECTION = 3,
+	LEFT_D_REDIRECTION = 4,
+	RIGHT_D_REDIRECTION = 5,
+	WORD = 6
+};
+
 ///linked list///
 typedef struct s_list_node
 {
@@ -24,6 +35,7 @@ typedef struct s_list_node
 	struct s_list_node	*prev;
 	char				*data;
 	int					index;
+	enum e_tokens		token;
 }	t_list_node;
 
 typedef struct s_list
