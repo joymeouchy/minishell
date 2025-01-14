@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/14 14:07:32 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/01/14 15:00:04 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void two_element_input_to_list(char *input, t_list *list, int *start, int *i)
 int split_redirections(char *input, t_list *list, int start, int *i)
 {
 	if ((input[*i] == '<' && input[*i + 1] == '<') ||(input[*i] == '>' && input[*i + 1] == '>'))
-			two_element_input_to_list(input, list, &start, i);
+		two_element_input_to_list(input, list, &start, i);
 	else if (input[*i] == '<' || input[*i] == '>')
 		one_element_input_to_list(input, list, &start, i);	
 	return (start);
