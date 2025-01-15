@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parser_copy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/15 11:48:56 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:04:24 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 void	one_element_input_to_list(char *input, t_list *list, int *start, int *i)
 {
-	insert_at_end_list(list, ft_substr(input, *start, *i - *start));
 	insert_at_end_list(list, ft_substr(input, *i, 1));
 	*start = *i + 1;
 }
 
 void	two_element_input_to_list(char *input, t_list *list, int *start, int *i)
 {
-	insert_at_end_list(list, ft_substr(input, *start, *i - *start));
 	insert_at_end_list(list, ft_substr(input, *i, 2));
 	*start = ++*i + 1;
 }
@@ -36,19 +34,18 @@ int	split_redirections(char *input, t_list *list, int start, int *i)
 	return (start);
 }
 
-int	split_symbols(char *input, t_list *list, int start, int *i)
+char	*split_symbols(char *input, int start, int *i)
 {
 	if (input[*i] == ' ')
 	{
-		insert_at_end_list(list, ft_substr(input, start, *i - start));
 		while (input[*i] == ' ')
 			(*i)++;
 		start = *i;
+		return (NULL);
 	}
 	if (input[*i] == '|')
 	{
-		insert_at_end_list(list, ft_substr(input, start, *i - start));
-		insert_at_end_list(list, ft_substr(input, *i, 1));
+		return (ft_substr(input, *i, 1));
 		start = *i + 1;
 	}
 	return (start);
@@ -100,6 +97,34 @@ int	single_quotes_to_node(char *input, t_list *list, int start, int *i)
 	return (start);
 }
 
+// t_list	*input_to_list(char *input)
+// {
+// 	t_list	*list;
+// 	int		i;
+// 	int		start;
+
+// 	if (*input == '\0')
+// 		return (NULL);
+// 	i = 0;
+// 	list = init_list();
+// 	start = i;
+// 	while (input[i])
+// 	{
+// 		start = split_symbols(input, list, start, &i);
+// 		start = split_redirections(input, list, start, &i);
+// 		if (input[i] == '"')
+// 			start = double_quotes_to_node(input, list, start, &i);
+// 		if (input[i] == 39)
+// 			start = single_quotes_to_node(input, list, start, &i);
+// 		i++;
+// 		if (!input[i])
+// 			insert_at_end_list(list, ft_substr(input, start, i - start));
+// 	}
+// 	return (list);
+// }
+
+
+
 t_list	*input_to_list(char *input)
 {
 	t_list	*list;
@@ -113,6 +138,8 @@ t_list	*input_to_list(char *input)
 	start = i;
 	while (input[i])
 	{
+		if (input[i] == ' ' || input[i] == '|' || input[i] == '<' || input[i] == '>')
+			insert_at_end_list(list, ft_substr(input, start, i - start));
 		start = split_symbols(input, list, start, &i);
 		start = split_redirections(input, list, start, &i);
 		if (input[i] == '"')
