@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 15:52:33 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/14 16:08:04 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/01/15 11:13:45 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int check_if_word_or_command(t_list_node *temp)
+int	check_if_word_or_command(t_list_node *temp)
 {
-		
 }
-void tokenize(t_list *list)
+
+void	tokenize(t_list *list)
 {
-	t_list_node *temp;
+	t_list_node	*temp;
 
 	temp = list->head;
 	while (temp)
@@ -35,16 +35,5 @@ void tokenize(t_list *list)
 			temp->token = 3;
 		else
 			check_if_word_or_command(temp);
-
+	}
 }
-}
-typedef	enum e_tokens
-{
-	PIPE = 0,
-	COMMAND = 1,
-	LEFT_REDIRECTION = 2,
-	RIGHT_REDIRECTION = 3,
-	LEFT_D_REDIRECTION = 4,
-	RIGHT_D_REDIRECTION = 5,
-	WORD = 6
-};

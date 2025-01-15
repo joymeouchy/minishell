@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/14 15:51:46 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/01/15 11:22:59 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef	enum e_tokens
+typedef enum e_tokens
 {
 	PIPE = 0,
 	COMMAND = 1,
@@ -26,7 +26,7 @@ typedef	enum e_tokens
 	LEFT_D_REDIRECTION = 4,
 	RIGHT_D_REDIRECTION = 5,
 	WORD = 6
-};
+}	t_tokens;
 
 ///linked list///
 typedef struct s_list_node
@@ -41,7 +41,7 @@ typedef struct s_list_node
 typedef struct s_list
 {
 	t_list_node	*head;
-	int		list_size;
+	int			list_size;
 }	t_list;
 
 //tree//
@@ -62,8 +62,8 @@ void		insert_at_middle_list(t_list *list, char *new_node_data, int index);
 
 ///linked_list_utils2.c///
 
-void	print_list(t_list *list);
-void	update_list_index(t_list_node *temp);
+void		print_list(t_list *list);
+void		update_list_index(t_list_node *temp);
 t_list_node	*get_last_node(t_list *list);
 t_list_node	*get_first_node(t_list *list);
 t_list_node	*get_node_at_index(t_list *list, int index);

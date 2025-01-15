@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/14 15:51:53 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/01/15 11:17:56 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	insert_at_end_list(t_list *list, char *new_node_data)
 {
 	t_list_node	*new_node;
 	t_list_node	*temp;
-	
-	if(*new_node_data == '\0')
-		return;
+
+	if (*new_node_data == '\0')
+		return ;
 	new_node = create_list_node(new_node_data);
 	if (list->head == NULL)
 		list->head = new_node;

@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/13 11:31:15 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:10:26 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_list(t_list *list)
 {
 	t_list_node	*temp;
 
+	if (!list)
+		return ;
 	list->head->index = 0;
 	temp = list->head;
 	printf("list:\n");

@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:38:44 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/13 11:30:43 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:11:32 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	free_list(t_list *list)
 	t_list_node	*current;
 	t_list_node	*next;
 
+	if (!list)
+		return ;
 	current = list->head;
 	while (current)
 	{
