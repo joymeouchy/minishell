@@ -10,6 +10,8 @@ SRC =   src/main.c \
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
         src/structures/linked_list_utils2.c\
+		# src/parser/token.c \
+		# src/parser/remove_quotes.c \
 		
 OBJ = $(SRC:.c=.o)
 

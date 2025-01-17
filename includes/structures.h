@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/15 11:22:59 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/17 09:27:56 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ typedef enum e_tokens
 {
 	PIPE = 0,
 	COMMAND = 1,
-	LEFT_REDIRECTION = 2,
-	RIGHT_REDIRECTION = 3,
-	LEFT_D_REDIRECTION = 4,
-	RIGHT_D_REDIRECTION = 5,
-	WORD = 6
-}	t_tokens;
+	BUILT_IN = 2,
+	LEFT_REDIRECTION = 3,
+	RIGHT_REDIRECTION = 4,
+	LEFT_D_REDIRECTION = 5,
+	RIGHT_D_REDIRECTION = 6,
+	WORD = 7
+}	e_tokens;
 
 ///linked list///
 typedef struct s_list_node
