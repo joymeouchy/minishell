@@ -7,6 +7,7 @@ LFLAGS= -lreadline -L/usr/local/opt/readline/Lib -I/usr/local/opt/readline/inclu
 
 SRC =   src/parser/parser.c \
 		src/parser/expand.c \
+		src/main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
         src/structures/linked_list_utils2.c\

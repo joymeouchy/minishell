@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/21 12:25:19 by root             ###   ########.fr       */
+/*   Updated: 2025/01/21 12:49:23 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*command_line_input()
-{
-	char	*input;
-	
-	input = readline("Minishell$ ");
-	return (input);
-}
 
 void    one_element_input_to_list(char *input, t_list *list, int *start, int *i)
 {
@@ -127,14 +120,4 @@ t_list  *input_to_list(char *input)
             insert_at_end_list(list, ft_substr(input, start, i - start));
     }
     return (list);
-}
-
-int main()
-{
-    t_list  *list;
-    // printf("%s", readline("Minishell$ "));
-    list = input_to_list(command_line_input());
-    
-    print_list(list);
-    return (0);
 }
