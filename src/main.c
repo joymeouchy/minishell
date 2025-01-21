@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/17 10:20:06 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:24:06 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	main(void)
 {
 	t_list	*list;
 	// printf("%s", readline("Minishell$ "));
-	while (1)
-	{
+	// while (1)
+	// {
 		list = input_to_list(command_line_input());
 		print_list(list);
 		free_list(list);
-	}
+	// }
 	return (0);
 }
 // int main()

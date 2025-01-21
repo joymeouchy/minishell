@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/17 08:27:38 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:21:30 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ void	insert_at_end_list(t_list *list, char *new_node_data)
 	t_list_node	*new_node;
 	t_list_node	*temp;
 
-	if (new_node_data == NULL)
-		return ;
 	new_node = create_list_node(new_node_data);
 	if (list->head == NULL)
 		list->head = new_node;
