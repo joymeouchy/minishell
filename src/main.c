@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/21 13:11:21 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:08:24 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,26 @@ char	*command_line_input(void)
 int	main(void)
 {
 	t_list	*list;
+
 	while (1)
 	{
 		list = input_to_list(command_line_input());
 		print_list(list);
 		if (list)
+		{
+			if (check_and_remove_quotes(list) == 1)
+			{
+				free(list);
+				continue ;
+			}
+			else
+			{
+				printf("after removing quotes\n");
+				print_list(list);
+			}
+		}
+		if (list)
 			free_list(list);
 	}
-		print_list(list);
 	return (0);
 }
-// int main()
-// {
-//     t_list  *list;
-//     // printf("%s", readline("Minishell$ "));
-//     list = input_to_list(command_line_input());
-//     print_list(list);
-//     return (0);
-// }

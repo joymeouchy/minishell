@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:38:44 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/13 11:30:43 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:56:17 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void	free_list(t_list *list)
 	}
 	list->head = NULL;
 	free(list);
-	return ;
 }

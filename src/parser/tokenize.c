@@ -1,24 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/13 13:09:49 by lkhoury          ###   ########.fr       */
+/*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
+/*   Updated: 2025/01/23 13:23:05 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minishell.h"
-
-
-// int main()
-// {
-//     t_list  *list;
-//     // printf("%s", readline("Minishell$ "));
-//     list = input_to_list(command_line_input());
-    
-//     print_list(list);
-//     return (0);
-// }

@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/21 13:08:14 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:55:43 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ void	insert_at_end_list(t_list *list, char *new_node_data)
 {
 	t_list_node	*new_node;
 	t_list_node	*temp;
-	
+
 	if (*new_node_data == '\0')
-		return;
+	{
+		free(new_node_data);
+		return ;
+	}
 	new_node = create_list_node(new_node_data);
 	if (list->head == NULL)
 		list->head = new_node;
@@ -52,9 +55,11 @@ void	insert_at_end_list(t_list *list, char *new_node_data)
 		temp->next = new_node;
 		new_node->prev = temp;
 		new_node->index = temp->index + 1;
+		// free(temp);
 	}
 	list->list_size++;
 }
+// jhfgdjhdafg|\>>>><<<A>G<>ADS>G<DF>ag|f|AGasgd dsbasdf>,aaf" kgkndfgl adSG" g,n
 
 void	insert_at_beginning_list(t_list *list, char *new_node_data)
 {

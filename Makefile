@@ -6,6 +6,7 @@ CFLAGS = -Werror -Wall -Wextra -g
 LFLAGS= -lreadline -L/usr/local/opt/readline/Lib -I/usr/local/opt/readline/include
 
 SRC =   src/parser/parser.c \
+		src/parser/remove_quotes.c \
 		src/parser/expand.c \
 		src/main.c\
 		src/structures/free_structures.c \
