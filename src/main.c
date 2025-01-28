@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/23 13:08:24 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:28:01 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ int	main(void)
 	{
 		list = input_to_list(command_line_input());
 		print_list(list);
-		if (list)
-		{
-			if (check_and_remove_quotes(list) == 1)
-			{
-				free(list);
-				continue ;
-			}
-			else
-			{
-				printf("after removing quotes\n");
-				print_list(list);
-			}
-		}
+		printf("\n\n");
+		expand_list(list);
+		printf("\nafter expand\n");
+		print_list(list);
+		check_and_remove_quotes(list);
+		printf("\nafter quotes\n");
+		print_list(list);
 		if (list)
 			free_list(list);
 	}

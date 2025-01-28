@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:16:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/23 12:48:22 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/28 10:27:21 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,29 +61,6 @@ int	check_if_contains_quotes(char *string)
 		i++;
 	}
 	return (1);
-}
-
-char	*append_char_to_string(char *src, char c)
-{
-	int		len;
-	int		i;
-	char	*new_str;
-
-	len = strlen(src) + 2;
-	new_str = malloc(len * sizeof(char));
-	if (new_str == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i])
-	{
-		new_str[i] = src[i];
-		i++;
-	}
-	new_str[i] = c;
-	i++;
-	new_str[i] = '\0';
-	free(src);
-	return (new_str);
 }
 
 void	remove_quotes_from_substring(char *string,

@@ -6,11 +6,36 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 19:47:40 by root              #+#    #+#             */
-/*   Updated: 2025/01/23 13:29:23 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:56:18 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+// int	find_dollar(char *str)
+// {
+// 	int	i;
+// 	int	in_single_quote;
+// 	int	in_double_quote;
+
+// 	i = 0;
+// 	in_single_quote = 0;
+// 	in_double_quote = 0;
+// 	if (*str == '\0' || str == NULL)
+// 		return (-1);
+// 	while (str[i])
+// 	{
+// 		if (str[i] == '\'' && !in_double_quote)
+// 			in_single_quote = !in_single_quote;
+// 		else if (str[i] == '"' && !in_single_quote)
+// 			in_double_quote = !in_double_quote;
+// 		else if (str[i] == '$' && !in_single_quote)
+// 			return (i);
+// 		i++;
+// 	}
+// 	return (-1);
+// }
+
 
 int	find_dollar(char *str)
 {
@@ -21,17 +46,38 @@ int	find_dollar(char *str)
 	i = 0;
 	in_single_quote = 0;
 	in_double_quote = 0;
+	if (str == NULL || *str == '\0')
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '\'' && !in_double_quote)
 			in_single_quote = !in_single_quote;
 		else if (str[i] == '"' && !in_single_quote)
 			in_double_quote = !in_double_quote;
-		else if (str[i] == '$' && !in_single_quote)
+		if (str[i] == '$' && !in_single_quote)
 			return (i);
 		i++;
 	}
 	return (-1);
+}
+
+bool	check_if_dollar_alone(char *str)
+{
+	int	i;
+	int	in_double_quote;
+
+	i = 0;
+	in_double_quote = 0;
+	while (str[i] != '$')
+	{
+		if (str[i] == '"' )
+			in_double_quote = !in_double_quote;
+		i++;
+	}
+	i += 1;
+	if (str[i] == '\0' || ((ft_isalnum(str[i]) == 0 || str[i] == '0' || str[i] == '$') && in_double_quote == 1))
+		return (true);
+	return (false);
 }
 
 char	*extract_variable_name(char *str)
@@ -39,12 +85,11 @@ char	*extract_variable_name(char *str)
 	int	i;
 	int	start;
 
-	i = 0;
-	if (!str || str[i] != '$')
-		return (NULL);
+	i = find_dollar(str);
 	i++;
-	if (str[i] == '?')
-		return (ft_strdup("?"));
+	start = i;
+	if (str[i] >= '1' && str[i] <= '9')
+		return (ft_substr(str, start, i + 1 - start));
 	start = i;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
@@ -62,9 +107,8 @@ char	*replace_variable(char *str, char *var_name,
 	before = ft_substr(str, 0, dollar_pos);
 	after = ft_substr(str, dollar_pos
 			+ ft_strlen(var_name) + 1, ft_strlen(str));
-	result = ft_strjoin(before, replacement);
-	temp = result;
-	result = ft_strjoin(result, after);
+	temp = ft_strjoin(before, replacement);
+	result = ft_strjoin(temp, after);
 	free(before);
 	free(after);
 	free(temp);
@@ -78,10 +122,11 @@ char	*expand(char *str)
 	char	*replacement;
 	char	*expanded_str;
 
+	if (check_if_dollar_alone(str))
+		return (str);
 	dollar_pos = find_dollar(str);
 	while ((dollar_pos) != -1)
 	{
-		dollar_pos = find_dollar(str);
 		var_name = extract_variable_name(&str[dollar_pos]);
 		if (!var_name)
 		{
@@ -95,9 +140,24 @@ char	*expand(char *str)
 		free(str);
 		str = expanded_str;
 		free(var_name);
+		dollar_pos = find_dollar(str);
 	}
 	return (str);
 }
 
+void	expand_list(t_list *list)
+{
+	t_list_node	*current;
 
-
+	current = list->head;
+	while (current)
+	{
+		if (current->data && ft_strchr(current->data, '$'))
+		{
+			current->data = expand(current->data);
+			if (!current->data)
+				return ;
+		}
+		current = current->next;
+	}
+}
