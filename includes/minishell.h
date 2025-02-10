@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/28 09:40:20 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:40:20 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 
 # include "../libft/libft.h"
 # include "structures.h"
@@ -46,7 +47,18 @@ void expand_list(t_list *list);
 ///utils.c///
 char	*append_char_to_string(char *src, char c);
 
+///shunting_yard.c//
+void shunting_yard(t_list *list);
+
+
+////tokenization.c//
+// void	tokenize(t_list *list);
+void	tokenize(t_list *list, char **envp);
+
+
 ///main.c///
 char	*command_line_input(void);
+
+
 
 #endif

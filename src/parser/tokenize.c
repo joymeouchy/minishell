@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/31 23:27:09 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:07:03 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int     ft_strcmp(char *s1, char *s2)
+{
+    int     i;
+
+    i = 0;
+     while (s1[i] != '\0' && s1[i] == s2[i])
+            i++;
+    return (s1[i] - s2[i]);
+}
 
 int	check_builtin(char *data)
 {
@@ -35,40 +45,118 @@ int	check_builtin(char *data)
 	return (0);
 }
 
-void	tokenize(t_list *list)
+char	*find_the_word_path_in_envp(char **envp)
 {
-	t_list_node	*temp;
-	int			is_first_command;
-
-	temp = list->head;
-	is_first_command = 1;
-	while (temp)
+	if (!envp || !*envp)
+    	return (NULL);
+	while (*envp)
 	{
-		if (temp->data[0] == '|')
-			temp->token = PIPE;
-		else if (temp->data[0] == '<' && temp->data[1] == '<')
-			temp->token = LEFT_D_REDIRECTION;
-		else if (temp->data[0] == '>' && temp->data[1] == '>')
-			temp->token = RIGHT_D_REDIRECTION;
-		else if (temp->data[0] == '<')
-			temp->token = LEFT_REDIRECTION;
-		else if (temp->data[0] == '>')
-			temp->token = RIGHT_REDIRECTION;
-		else if (temp->data[0] == '~')
-			temp->token = TILDE;
-		else if (ft_strchr(temp->data, '*'))
-			temp->token = WILDCARD;
-		else if (is_builtin(temp->data))
-			temp->token = BUILT_IN;
-		else if (is_first_command)
-		{
-			temp->token = COMMAND;
-			is_first_command = 0;
-		}
-		else
-			temp->token = WORD;
-		if (temp->token == PIPE)
-			is_first_command = 1;
-		temp = temp->next;
+		if (ft_strnstr(*envp, "PATH=", 5))
+			return (*envp + 5);
+		envp++;
 	}
+	return (NULL);
 }
+
+int is_command(char *cmd, char **envp)
+{
+	char	*path_env = find_the_word_path_in_envp(envp);
+	char	**paths;
+	char	*full_path;
+	int		i = 0;
+
+	if (!path_env)
+		return (0);
+	paths = ft_split(path_env, ':');
+	while (paths[i])
+	{
+		full_path = malloc(strlen(paths[i]) + strlen(cmd) + 2);
+		if (!full_path)
+			return (0);
+		strcpy(full_path, paths[i]);
+		strcat(full_path, "/");
+		strcat(full_path, cmd);
+		if (access(full_path, X_OK) == 0)
+		{
+			free(full_path);
+			return (1);
+		}
+		free(full_path);
+		i++;
+	}
+	return (0);
+}
+
+
+// void	tokenize(t_list *list)
+// {
+// 	t_list_node	*temp;
+// 	// int			is_first_command;
+
+// 	temp = list->head;
+// 	// is_first_command = 1;
+// 	while (temp)
+// 	{
+// 		if (temp->data[0] == '|')
+// 			temp->token = PIPE;
+// 		else if (temp->data[0] == '<' && temp->data[1] == '<')
+// 			temp->token = LEFT_D_REDIRECTION;
+// 		else if (temp->data[0] == '>' && temp->data[1] == '>')
+// 			temp->token = RIGHT_D_REDIRECTION;
+// 		else if (temp->data[0] == '<')
+// 			temp->token = LEFT_REDIRECTION;
+// 		else if (temp->data[0] == '>')
+// 			temp->token = RIGHT_REDIRECTION;
+// 		else if (temp->data[0] == '~')
+// 			temp->token = TILDE;
+// 		else if (check_builtin(temp->data))
+// 			temp->token = BUILT_IN;
+// 		// else if (is_first_command)
+// 		// {
+// 		// 	temp->token = COMMAND;
+// 		// 	is_first_command = 0;
+// 		// }
+// 		else
+// 			temp->token = WORD;
+// 		// if (temp->token == PIPE)
+// 			// is_first_command = 1;
+// 		printf("im token %d\n",temp->token);
+// 		temp = temp->next;
+// 	}
+// 	printf("done token\n");
+// }
+
+void tokenize(t_list *list, char **envp)
+{
+    t_list_node *temp = list->head;
+    
+    while (temp)
+    {
+        printf("Processing node: %s\n", temp->data);
+        if (!temp->data)
+            return;
+        if (temp->data[0] == '|')
+            temp->token = PIPE;
+        else if (temp->data[0] == '<' && temp->data[1] == '<')
+            temp->token = LEFT_D_REDIRECTION;
+        else if (temp->data[0] == '>' && temp->data[1] == '>')
+            temp->token = RIGHT_D_REDIRECTION;
+        else if (temp->data[0] == '<')
+            temp->token = LEFT_REDIRECTION;
+        else if (temp->data[0] == '>')
+            temp->token = RIGHT_REDIRECTION;
+        else if (temp->data[0] == '~')
+            temp->token = TILDE;
+        else if (check_builtin(temp->data))
+            temp->token = BUILT_IN;
+        else if (is_command(temp->data, envp))
+            temp->token = COMMAND;
+        else
+            temp->token = WORD;
+
+        printf("Token assigned: %d\n", temp->token);
+        temp = temp->next;
+    }
+}
+
+

@@ -9,11 +9,13 @@ SRC =   src/parser/parser.c \
 		src/parser/remove_quotes.c \
 		src/parser/expand.c \
 		src/parser/utils.c \
+		src/parser/tokenize.c \
 		src/main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
 		src/structures/stack_utils.c\
         src/structures/linked_list_utils2.c\
+		src/shunting_yard.c\
 		
 OBJ = $(SRC:.c=.o)
 

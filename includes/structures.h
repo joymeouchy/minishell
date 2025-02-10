@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/07 17:10:56 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:02:06 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef enum e_tokens
 	RIGHT_D_REDIRECTION = 6,
 	WORD = 7,
 	TILDE = 8,
-	WILDCARD = 9
 }	e_tokens;
+
 ///linked list///
 typedef struct s_list_node
 {
@@ -63,12 +63,19 @@ typedef struct s_tree
 }	t_tree;
 
 //stack//
+typedef struct s_stack
+{
+	int top;
+	char    **stack;
+} t_stack;
 
 ///free_structures.c///
 void		free_list(t_list *list);
+void free_stack(t_stack *stack);
 
 ///linked list functions//
 ///linked_list_utils.c///
+
 t_list		*init_list(void);
 t_list_node	*create_list_node(char *data);
 void		insert_at_end_list(t_list *list, char *new_node_data);
@@ -88,6 +95,8 @@ t_list_node	*get_node_at_index(t_list *list, int index);
 
 ///stack functions//
 ///stack_utils.c///
-void shunting_yard(t_list *list);
-void print_stack(char **stack);
+void    init_stack(t_list *list, t_stack *stack);
+void push(char *data, t_stack *stack);
+void pop(t_stack *stack);
+void print_stack(t_stack *stack);
 #endif

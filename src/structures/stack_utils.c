@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 12:28:46 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 23:01:45 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/structures.h"
-
-
-typedef struct s_stack
-{
-    int top;
-    char    **stack;
-} t_stack;
 
 void    init_stack(t_list *list, t_stack *stack)
 {
@@ -47,29 +40,14 @@ void pop(t_stack *stack)
     }
 }
 
-void shunting_yard(t_list *list)
-{
-    t_stack *stack;
-    t_list_node *temp = list->head;
-
-    stack = malloc(sizeof(t_stack));
-    init_stack(list, stack);
-    while(temp)
-    {
-        push(temp->data, stack);
-        temp = temp->next;
-    }    
-    print_stack(stack->stack);
-    
-}
-void print_stack(char **stack)
+void print_stack(t_stack *stack)
 {
     int i;
 
     i = 0;
-    while(stack[i])
+    while(stack->stack[i])
     {
-        printf("stack element is:%s\n", stack[i]);
+        printf("stack element is:%s\n", stack->stack[i]);
         i++;
     }
 }

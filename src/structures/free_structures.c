@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_structures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 08:38:44 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/23 12:56:17 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:13:36 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ void	free_list(t_list *list)
 	}
 	list->head = NULL;
 	free(list);
+}
+
+void free_stack(t_stack *stack)
+{
+	while(stack->top > -1)
+		pop(stack);
+	free(stack->stack);
+	free(stack);
 }
