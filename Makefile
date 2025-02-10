@@ -12,6 +12,7 @@ SRC =   src/parser/parser.c \
 		src/main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
+		src/structures/stack_utils.c\
         src/structures/linked_list_utils2.c\
 		
 OBJ = $(SRC:.c=.o)

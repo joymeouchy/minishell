@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/28 11:26:51 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/07 17:10:56 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ typedef struct s_list
 
 //tree//
 
+typedef struct s_tree_node
+{
+	struct s_list_node	*left;
+	struct s_list_node	*right;
+	char				*data;
+	enum e_tokens		token;
+}	t_tree_node;
+
+typedef struct s_tree
+{
+	t_tree_node	*root;
+}	t_tree;
 
 //stack//
 
@@ -76,5 +88,6 @@ t_list_node	*get_node_at_index(t_list *list, int index);
 
 ///stack functions//
 ///stack_utils.c///
-
+void shunting_yard(t_list *list);
+void print_stack(char **stack);
 #endif

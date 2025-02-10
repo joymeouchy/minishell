@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/28 10:28:01 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:15:32 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ int	main(void)
 	while (1)
 	{
 		list = input_to_list(command_line_input());
+		if (!list || !list->head)
+			continue;
 		print_list(list);
 		printf("\n\n");
+		printf("size of the list %d\n",list->list_size);
 		expand_list(list);
-		printf("\nafter expand\n");
-		print_list(list);
+		// printf("\nafter expand\n");
+		// print_list(list);
 		check_and_remove_quotes(list);
-		printf("\nafter quotes\n");
-		print_list(list);
+		// printf("\nafter quotes\n");
+		// print_list(list);
+		shunting_yard(list);
 		if (list)
 			free_list(list);
 	}

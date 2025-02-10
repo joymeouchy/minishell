@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/01/23 12:54:33 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:55:44 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	double_quotes_to_node(char *input, t_list *list, int start, int *i)
 	{
 		flag_quotes_closed = 0;
 		*i += 1;
-		while (input[*i] != '"' && input[*i] != '\0')
+		while (input[*i] != '"' && flag_quotes_closed == 0 && input[*i] != '\0')
 			(*i)++;
 		if (input[*i] == '"')
 			flag_quotes_closed = 1;
