@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/08 20:15:32 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:32:13 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	main(void)
 	{
 		list = input_to_list(command_line_input());
 		if (!list || !list->head)
-			continue;
+			continue;;
 		print_list(list);
-		printf("\n\n");
-		printf("size of the list %d\n",list->list_size);
+		printf("\n");
 		expand_list(list);
-		// printf("\nafter expand\n");
-		// print_list(list);
+		printf("\nafter expand\n");
+		print_list(list);
+		printf("\n");
 		check_and_remove_quotes(list);
 		// printf("\nafter quotes\n");
 		// print_list(list);

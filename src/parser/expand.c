@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 19:47:40 by root              #+#    #+#             */
-/*   Updated: 2025/01/28 15:56:18 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:03:45 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	find_dollar(char *str)
 	return (-1);
 }
 
-bool	check_if_dollar_alone(char *str)
+bool	check_if_dollar_to_print(char *str)
 {
 	int	i;
 	int	in_double_quote;
@@ -75,7 +75,7 @@ bool	check_if_dollar_alone(char *str)
 		i++;
 	}
 	i += 1;
-	if (str[i] == '\0' || ((ft_isalnum(str[i]) == 0 || str[i] == '0' || str[i] == '$') && in_double_quote == 1))
+	if (str[i] == '\0' || ((ft_isalnum(str[i]) == 0 || str[i] == '0' || str[i] == '$') && in_double_quote == 0))
 		return (true);
 	return (false);
 }
@@ -122,7 +122,7 @@ char	*expand(char *str)
 	char	*replacement;
 	char	*expanded_str;
 
-	if (check_if_dollar_alone(str))
+	if (check_if_dollar_to_print(str))
 		return (str);
 	dollar_pos = find_dollar(str);
 	while ((dollar_pos) != -1)

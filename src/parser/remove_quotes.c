@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:16:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/28 10:27:21 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:25:48 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int	check_and_remove_quotes(t_list *list)
 
 	temp = list->head;
 	flag_balanced_quotes = 0;
+	if (!list || !list->head)
+		return 1;
 	while (temp)
 	{
 		if (check_if_contains_quotes(temp->data) == 0)
