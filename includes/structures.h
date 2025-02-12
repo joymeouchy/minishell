@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 23:58:28 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:45:43 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum e_tokens
 
 typedef struct s_envp
 {
-	char *path;
+	char **split_path;
 	
 }t_envp;
 

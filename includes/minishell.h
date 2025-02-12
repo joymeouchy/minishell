@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 21:40:20 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/12 13:47:42 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void shunting_yard(t_list *list);
 
 
 ////tokenization.c//
-// void	tokenize(t_list *list);
 void	tokenize(t_list *list, char **envp);
 
+//get_env.c
+t_envp *get_split_path(char **envp);
 
 ///main.c///
 char	*command_line_input(void);

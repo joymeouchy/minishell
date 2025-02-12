@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/11 17:57:42 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:05:15 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
+	(void)envp;
 	t_list	*list;
+	
 	// t_stack *stack;
 	while (1)
 	{
@@ -32,16 +34,16 @@ int	main(int argc, char **argv, char **envp)
 		if (!list || !list->head)
 			continue;;
 		print_list(list);
-		printf("\n");
-		expand_list(list);
-		// printf("\nafter expand\n");
-		// print_list(list);
 		// printf("\n");
-		check_and_remove_quotes(list);
-		// printf("\nafter quotes\n");
-		// print_list(list);
-		tokenize(list,envp);
-		shunting_yard(list);
+		// expand_list(list);
+		// // printf("\nafter expand\n");
+		// // print_list(list);
+		// // printf("\n");
+		// check_and_remove_quotes(list);
+		// // printf("\nafter quotes\n");
+		// // print_list(list);
+		// tokenize(list,envp);
+		// shunting_yard(list);
 		if (list)
 			free_list(list);
 		// if (stack)
