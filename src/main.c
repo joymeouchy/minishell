@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/10 22:53:51 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:57:42 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv, char **envp)
 		// printf("\nafter quotes\n");
 		// print_list(list);
 		tokenize(list,envp);
-		// shunting_yard(list);
+		shunting_yard(list);
 		if (list)
 			free_list(list);
 		// if (stack)

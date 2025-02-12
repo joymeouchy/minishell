@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shunting_yard.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/10 23:01:22 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:03:44 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,22 @@ void shunting_yard(t_list *list)
     init_stack(list, cmd_stack);
     while (temp)
     {
-        
         if (temp->token == 7 || temp->token == 8)
             push(temp->data, stack);
         else 
         {
-            printf("hiii");
-            if (stack->stack[stack->top] == 0 && cmd_stack->top > -1)
+            if (stack->stack[stack->top] == 0 && cmd_stack->top > 0)
                 push_stack_to_other(stack, cmd_stack);
             push(temp->data, cmd_stack);    
         }
         temp = temp->next;
     }
+    // while (cmd_stack->top > 0)
+    //     push_stack_to_other(stack, cmd_stack);
+
     print_stack(stack);
+    print_stack(cmd_stack);
+
     // free_stack(cmd_stack);
     // return (stack);
 }

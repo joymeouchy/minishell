@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 23:01:45 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/12 10:20:45 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void    init_stack(t_list *list, t_stack *stack)
 {
     stack->top = -1;
-    stack->stack = (char **)malloc(sizeof(char *) * list->list_size);
+    stack->stack = (char **)malloc(sizeof(char *) * list->list_size + 1);
     stack->stack[list->list_size] = '\0';
     if (!stack->stack)
         return;

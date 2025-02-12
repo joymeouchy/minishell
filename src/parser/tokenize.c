@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 23:07:03 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/11 00:08:15 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,12 @@ int is_command(char *cmd, char **envp)
 void tokenize(t_list *list, char **envp)
 {
     t_list_node *temp = list->head;
+
+	(void)envp;
     
     while (temp)
     {
-        printf("Processing node: %s\n", temp->data);
+        // printf("Processing node: %s\n", temp->data);
         if (!temp->data)
             return;
         if (temp->data[0] == '|')
@@ -154,7 +156,7 @@ void tokenize(t_list *list, char **envp)
         else
             temp->token = WORD;
 
-        printf("Token assigned: %d\n", temp->token);
+        // printf("Token assigned: %d\n", temp->token);
         temp = temp->next;
     }
 }

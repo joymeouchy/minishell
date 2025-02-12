@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/10 23:02:06 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/02/10 23:58:28 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef enum e_tokens
 	WORD = 7,
 	TILDE = 8,
 }	e_tokens;
+
+typedef struct s_envp
+{
+	char *path;
+	
+}t_envp;
 
 ///linked list///
 typedef struct s_list_node
