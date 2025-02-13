@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/12 13:47:42 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:31:20 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void shunting_yard(t_list *list);
 
 
 ////tokenization.c//
-void	tokenize(t_list *list, char **envp);
+void	tokenize(t_list *list, t_envp *envp);
 
 //get_env.c
 t_envp *get_split_path(char **envp);

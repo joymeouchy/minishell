@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/12 13:58:56 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:34:33 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int is_command(char *cmd, t_envp *envp)
 {
 	char	*full_path;
 	int		i = 0;
-
 
 	while (envp->split_path[i])
 	{
@@ -152,15 +151,13 @@ int is_command(char *cmd, t_envp *envp)
 // 	printf("done token\n");
 // }
 
-void tokenize(t_list *list, char **envp)
+void tokenize(t_list *list, t_envp *envp)
 {
-    t_list_node *temp = list->head;
-
-	(void)envp;
-    
+    t_list_node *temp;
+	
+	temp = list->head;
     while (temp)
     {
-        // printf("Processing node: %s\n", temp->data);
         if (!temp->data)
             return;
         if (temp->data[0] == '|')
@@ -182,7 +179,7 @@ void tokenize(t_list *list, char **envp)
         else
             temp->token = WORD;
 
-        // printf("Token assigned: %d\n", temp->token);
+        printf("Token assigned: %d\n", temp->token);
         temp = temp->next;
     }
 }
