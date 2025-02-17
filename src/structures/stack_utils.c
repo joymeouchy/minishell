@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/12 10:20:45 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:13:16 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,9 @@ void push(char *data, t_stack *stack)
 void pop(t_stack *stack)
 {
     if (stack->top == -1)
-    {
-        printf("\nUnderflow!!");
-    }
+        printf("\nUnderflow!!\n");
     else
-    {
-        printf("\nPopped element: %s", stack->stack[stack->top]);
         stack->top = stack->top - 1;
-    }
 }
 
 void print_stack(t_stack *stack)
@@ -45,6 +40,7 @@ void print_stack(t_stack *stack)
     int i;
 
     i = 0;
+    printf("\nstack:\n");
     while(stack->stack[i])
     {
         printf("stack element is:%s\n", stack->stack[i]);

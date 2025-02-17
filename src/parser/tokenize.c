@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/13 11:34:33 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:11:32 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,6 @@ void tokenize(t_list *list, t_envp *envp)
             temp->token = COMMAND;
         else
             temp->token = WORD;
-
-        printf("Token assigned: %d\n", temp->token);
         temp = temp->next;
     }
 }

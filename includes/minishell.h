@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/13 11:31:20 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:32:12 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void expand_list(t_list *list);
 char	*append_char_to_string(char *src, char c);
 
 ///shunting_yard.c//
-void shunting_yard(t_list *list);
+t_stack *shunting_yard(t_list *list);
 
 
 ////tokenization.c//

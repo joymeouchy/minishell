@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/11 18:03:44 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:29:43 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void push_stack_to_other(t_stack *src, t_stack *dst)
     }
 }
 
-void shunting_yard(t_list *list)
+t_stack *shunting_yard(t_list *list)
 {
     t_stack *stack;
     t_stack *cmd_stack;
@@ -56,17 +56,13 @@ void shunting_yard(t_list *list)
         else 
         {
             if (stack->stack[stack->top] == 0 && cmd_stack->top > 0)
-                push_stack_to_other(stack, cmd_stack);
-            push(temp->data, cmd_stack);    
+                push_stack_to_other(cmd_stack, stack);
+            push(temp->data, cmd_stack);
         }
         temp = temp->next;
     }
-    // while (cmd_stack->top > 0)
-    //     push_stack_to_other(stack, cmd_stack);
-
-    print_stack(stack);
-    print_stack(cmd_stack);
-
-    // free_stack(cmd_stack);
-    // return (stack);
+    if (cmd_stack->top > -1)
+        push_stack_to_other(cmd_stack, stack);
+    free_stack(cmd_stack);
+    return (stack);
 }

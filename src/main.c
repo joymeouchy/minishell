@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/13 11:47:03 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:31:21 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,11 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	// (void)envp;
 	t_list	*list;
 	t_envp *env;
+	t_stack *stack;
 	
 	env = get_split_path(envp);
-	// t_stack *stack;
 	while (1)
 	{
 		list = input_to_list(command_line_input());
@@ -45,11 +44,13 @@ int	main(int argc, char **argv, char **envp)
 		// // printf("\nafter quotes\n");
 		// // print_list(list);
 		tokenize(list, env);
-		shunting_yard(list);
+		stack = shunting_yard(list);
+		print_stack(stack);
 		if (list)
 			free_list(list);
 		// if (stack)
 		// 	free_stack(stack);
 	}
+	free(env);
 	return (0);
 }
