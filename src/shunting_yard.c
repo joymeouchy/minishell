@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shunting_yard.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/17 13:29:43 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:29:42 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void push_stack_to_other(t_stack *src, t_stack *dst)
 {
     while(src->top > -1)
     {
-        push(src->stack[src->top], dst);
+        push(src->stack[src->top].data, dst);
         pop(src);
     }
 }
@@ -55,7 +55,7 @@ t_stack *shunting_yard(t_list *list)
             push(temp->data, stack);
         else 
         {
-            if (stack->stack[stack->top] == 0 && cmd_stack->top > 0)
+            if (stack->stack[stack->top].data == 0 && cmd_stack->top > 0)
                 push_stack_to_other(cmd_stack, stack);
             push(temp->data, cmd_stack);
         }

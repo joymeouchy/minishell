@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/12 13:45:43 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:50:12 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef enum e_tokens
 {
+	null = -1,
 	PIPE = 0,
 	COMMAND = 1,
 	BUILT_IN = 2,
@@ -69,10 +70,17 @@ typedef struct s_tree
 }	t_tree;
 
 //stack//
+
+typedef struct s_stack_element
+{
+    int data;
+    e_tokens token;
+} t_stack_element;
+
 typedef struct s_stack
 {
 	int top;
-	char    **stack;
+	t_stack_element	*stack;
 } t_stack;
 
 ///free_structures.c///

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/17 13:13:16 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:49:40 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 void    init_stack(t_list *list, t_stack *stack)
 {
     stack->top = -1;
-    stack->stack = (char **)malloc(sizeof(char *) * list->list_size + 1);
-    stack->stack[list->list_size] = '\0';
+    stack->stack = (char *)malloc(sizeof(char *) * list->list_size + 1);
+    stack->stack[list->list_size].data = '\0';
+    stack->stack[list->list_size].token = -1;
     if (!stack->stack)
         return;
 }
 
-void push(char *data, t_stack *stack)
+void push(char *data, e_tokens token, t_stack *stack)
 {
     stack->top++;
-    stack->stack[stack->top] = data;
+    stack->stack[stack->top].data = data;
+    stack->stack[stack->top].token = token;
 }
 
 void pop(t_stack *stack)
@@ -41,9 +43,9 @@ void print_stack(t_stack *stack)
 
     i = 0;
     printf("\nstack:\n");
-    while(stack->stack[i])
+    while(stack->stack[i].data )
     {
-        printf("stack element is:%s\n", stack->stack[i]);
+        printf("stack element is:%s\n", stack->stack[i].data);
         i++;
     }
 }
