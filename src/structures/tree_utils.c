@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/01/31 21:23:19 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:55:18 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/structures.h"
 
-t_tree	*init_tree(void)
+t_tree *init_tree(void)
 {
-	t_tree	*tree;
+    t_tree *tree;
 
-	tree = malloc(sizeof(t_tree));
-	tree->root = NULL;
-	return (tree);
+    tree = malloc(sizeof(t_tree));
+    tree->root = NULL;
+    return (tree);
 }
 
-t_tree_node* create_tree_node(int data)
+t_tree_node *create_tree_node(int data)
 {
     t_tree_node *new_node;
 
-    new_node = (t_tree_node*)malloc(sizeof(t_tree_node));
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
+    new_node = (t_tree_node *)malloc(sizeof(t_tree_node));
+    new_node->data = data;
+    new_node->left = NULL;
+    new_node->right = NULL;
     return (new_node);
 }
 
 void insert(t_tree *tree, int data)
 {
     t_tree_node *new_node;
+    t_tree_node *temp;
 
     new_node = create_tree_node(data);
     if (tree->root == NULL)
@@ -43,33 +44,34 @@ void insert(t_tree *tree, int data)
         return;
     }
 
-    // Level order traversal to find the appropriate place
-    // for insertion
-    Node* temp;
-    Node* queue[100];
+    // Level order traversal to find the appropriate place for insertion
+    t_tree_node *queue[100];
     int front = -1, rear = -1;
-    queue[++rear] = *root;
+    queue[++rear] = tree->root;
 
-    while (front != rear) {
+    while (front != rear)
+    {
         temp = queue[++front];
 
-        //  Insert new node as the left child
-        if (temp->left == NULL) {
-            temp->left = newNode;
+        // Insert new node as the left child
+        if (temp->left == NULL)
+        {
+            temp->left = new_node;
             return;
         }
-        // if left child is not missing push it to the queue
-        else {
+        else
+        {
             queue[++rear] = temp->left;
         }
+
         // Insert new node as the right child
-        if (temp->right == NULL) {
-            temp->right = newNode;
+        if (temp->right == NULL)
+        {
+            temp->right = new_node;
             return;
         }
-        // if right child is not missing push it to the
-        // queue
-        else {
+        else
+        {
             queue[++rear] = temp->right;
         }
     }
