@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/18 06:03:53 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/18 11:36:49 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@ t_tree *init_tree(void)
     return (tree);
 }
 
-void printInorder(t_tree_node *node)
-{
+void printInorder(t_tree_node *node) {
     if (node == NULL)
         return;
+
+    // Traverse the left subtree
     printInorder(node->left);
+
+    // Print the current node's data
     printf("Data: %s, Token: %d\n", node->data, node->token);
+
+    // Traverse the right subtree
     printInorder(node->right);
 }
 t_tree_node *create_tree_node(char *data, e_tokens token)
@@ -55,30 +60,52 @@ t_tree_node *create_tree_node(char *data, e_tokens token)
 //     return (node);
 // }
 
-t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
-{
-    if (node == NULL)
+// t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
+// {
+//     if (node == NULL)
+//         return create_tree_node(data, token);
+//     if (token != 7 && token != 8)
+//     {
+//         if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8)) 
+//             node->right = insert(node->right, data, token);
+//         else if (node->left == NULL)
+//             node->left = insert(node->right, data, token);
+//     } 
+//     else
+//     {
+//         if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8))
+//             node->right = insert(node->right, data, token);
+//         else if (node->left != NULL && )
+//             node->left = insert(node->left, data, token);
+//     }
+//     return node;
+// }
+
+t_tree_node *insert(t_tree_node *node, char *data, e_tokens token) {
+    if (node == NULL) {
         return create_tree_node(data, token);
-    if (token != 7 && token != 8)
-    {
-        if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8)) 
-            node->right = insert(node->right, data, token);
-        else if (node->left == NULL)
-            node->left = insert(node->right, data, token);
-    } 
-    else
-    {
-        if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8))
-            node->right = insert(node->right, data, token);
-        else if (node->left != NULL && )
-            node->left = insert(node->left, data, token);
     }
+
+    // If the token is a WORD or TILDE, always insert it on the right
+    if (token == WORD || token == TILDE) {
+        if (node->right == NULL) {
+            node->right = insert(node->right, data, token);
+        } else {
+            // If the right child is already occupied, insert on the left
+            node->left = insert(node->left, data, token);
+        }
+    } else {
+        // For operators, insert on the right if possible
+        if (node->right == NULL) {
+            node->right = insert(node->right, data, token);
+        } else {
+            // If the right child is already occupied, insert on the left
+            node->left = insert(node->left, data, token);
+        }
+    }
+
     return node;
 }
-
-
-
-
 
 void stack_to_tree(t_stack *stack)
 {

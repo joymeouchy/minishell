@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/18 03:20:04 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/18 07:35:39 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void printInorder(t_tree_node *node);
 t_tree *init_tree(void);
 t_tree_node *create_tree_node(char *data, e_tokens token);
 t_tree_node *insert( t_tree_node *node, char *data, e_tokens token);
-void stack_to_tree(t_stack *stack);
+// void stack_to_tree(t_stack *stack);
 ///stack functions//
 ///stack_utils.c///
 void    init_stack(t_list *list, t_stack *stack);
