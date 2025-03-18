@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/17 13:31:21 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/17 23:48:20 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*command_line_input(void)
 	input = readline("Minishell$ ");
 	return (input);
 }
-
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -46,10 +45,11 @@ int	main(int argc, char **argv, char **envp)
 		tokenize(list, env);
 		stack = shunting_yard(list);
 		print_stack(stack);
+		stack_to_tree(stack);
 		if (list)
 			free_list(list);
-		// if (stack)
-		// 	free_stack(stack);
+		if (stack)
+			free_stack(stack);
 	}
 	free(env);
 	return (0);

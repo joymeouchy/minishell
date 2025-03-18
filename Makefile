@@ -17,6 +17,8 @@ SRC =   src/parser/parser.c \
 		src/structures/stack_utils.c\
         src/structures/linked_list_utils2.c\
 		src/shunting_yard.c\
+        src/structures/tree_utils.c\
+
 		
 OBJ = $(SRC:.c=.o)
 

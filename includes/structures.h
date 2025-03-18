@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/14 17:50:12 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/18 03:20:04 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef struct s_list
 
 typedef struct s_tree_node
 {
-	struct s_list_node	*left;
-	struct s_list_node	*right;
+	struct s_tree_node	*left;
+	struct s_tree_node	*right;
 	char				*data;
 	enum e_tokens		token;
 }	t_tree_node;
@@ -73,7 +73,7 @@ typedef struct s_tree
 
 typedef struct s_stack_element
 {
-    int data;
+    char *data;
     e_tokens token;
 } t_stack_element;
 
@@ -106,11 +106,17 @@ t_list_node	*get_node_at_index(t_list *list, int index);
 
 ///tree functions//
 ///tree_utils.c///
-
+void printInorder(t_tree_node *node);
+t_tree *init_tree(void);
+t_tree_node *create_tree_node(char *data, e_tokens token);
+t_tree_node *insert( t_tree_node *node, char *data, e_tokens token);
+void stack_to_tree(t_stack *stack);
 ///stack functions//
 ///stack_utils.c///
 void    init_stack(t_list *list, t_stack *stack);
-void push(char *data, t_stack *stack);
+void push(char *data, e_tokens token, t_stack *stack);
+// void push(char *data, t_stack *stack);
+
 void pop(t_stack *stack);
 void print_stack(t_stack *stack);
 #endif

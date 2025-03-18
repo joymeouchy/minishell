@@ -6,73 +6,100 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/14 12:55:18 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/18 06:03:53 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/structures.h"
 
+
 t_tree *init_tree(void)
 {
     t_tree *tree;
-
+    
     tree = malloc(sizeof(t_tree));
     tree->root = NULL;
     return (tree);
 }
 
-t_tree_node *create_tree_node(int data)
+void printInorder(t_tree_node *node)
+{
+    if (node == NULL)
+        return;
+    printInorder(node->left);
+    printf("Data: %s, Token: %d\n", node->data, node->token);
+    printInorder(node->right);
+}
+t_tree_node *create_tree_node(char *data, e_tokens token)
 {
     t_tree_node *new_node;
 
     new_node = (t_tree_node *)malloc(sizeof(t_tree_node));
     new_node->data = data;
+    new_node->token = token;
     new_node->left = NULL;
     new_node->right = NULL;
     return (new_node);
 }
 
-void insert(t_tree *tree, int data)
+
+
+// t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
+// {
+//     if (node == NULL)
+//         return (create_tree_node(data, token));
+//     if (node->right == NULL || (node->right->token != 7 && node->right->token != 8))
+//         node->right = insert(node->right, data, token);
+//     else
+//         node->left = insert(node->left, data, token);
+//     return (node);
+// }
+
+t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
 {
-    t_tree_node *new_node;
-    t_tree_node *temp;
-
-    new_node = create_tree_node(data);
-    if (tree->root == NULL)
+    if (node == NULL)
+        return create_tree_node(data, token);
+    if (token != 7 && token != 8)
     {
-        tree->root = new_node;
-        return;
-    }
-
-    // Level order traversal to find the appropriate place for insertion
-    t_tree_node *queue[100];
-    int front = -1, rear = -1;
-    queue[++rear] = tree->root;
-
-    while (front != rear)
+        if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8)) 
+            node->right = insert(node->right, data, token);
+        else if (node->left == NULL)
+            node->left = insert(node->right, data, token);
+    } 
+    else
     {
-        temp = queue[++front];
-
-        // Insert new node as the left child
-        if (temp->left == NULL)
-        {
-            temp->left = new_node;
-            return;
-        }
-        else
-        {
-            queue[++rear] = temp->left;
-        }
-
-        // Insert new node as the right child
-        if (temp->right == NULL)
-        {
-            temp->right = new_node;
-            return;
-        }
-        else
-        {
-            queue[++rear] = temp->right;
-        }
+        if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8))
+            node->right = insert(node->right, data, token);
+        else if (node->left != NULL && )
+            node->left = insert(node->left, data, token);
     }
+    return node;
 }
+
+
+
+
+
+void stack_to_tree(t_stack *stack)
+{
+    t_tree *tree;
+
+    tree = init_tree();
+    tree->root = create_tree_node(stack->stack[stack->top].data, stack->stack[stack->top].token);
+    stack->top--;
+    while(stack->top > -1)
+    {
+       tree->root = insert(tree->root, stack->stack[stack->top].data, stack->stack[stack->top].token);
+        stack->top--;
+    }
+    printf("tree:\n");
+    printInorder(tree->root);
+}
+
+
+// void print_tree(t_tree_node *node)
+// {
+        
+//     if (node->left != NULL)
+//         return 
+// }

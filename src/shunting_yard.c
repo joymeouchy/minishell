@@ -6,34 +6,17 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/03/14 17:29:42 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:44:42 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minishell.h"
 
-// void shunting_yard(t_list *list)
-// {
-//     t_stack *stack;
-    
-//     t_list_node *temp = list->head;
-
-//     stack = malloc(sizeof(t_stack));
-//     init_stack(list, stack);
-//     while(temp)
-//     {
-//         push(temp->data, stack);
-//         temp = temp->next;
-//     }    
-//     print_stack(stack->stack);
-    
-// }
-
 void push_stack_to_other(t_stack *src, t_stack *dst)
 {
     while(src->top > -1)
     {
-        push(src->stack[src->top].data, dst);
+        push(src->stack[src->top].data, src->stack[src->top].token, dst);
         pop(src);
     }
 }
@@ -52,12 +35,12 @@ t_stack *shunting_yard(t_list *list)
     while (temp)
     {
         if (temp->token == 7 || temp->token == 8)
-            push(temp->data, stack);
+            push(temp->data, temp->token, stack);
         else 
         {
-            if (stack->stack[stack->top].data == 0 && cmd_stack->top > 0)
+            if (cmd_stack->stack[cmd_stack->top].token == 0)
                 push_stack_to_other(cmd_stack, stack);
-            push(temp->data, cmd_stack);
+            push(temp->data, temp->token, cmd_stack);
         }
         temp = temp->next;
     }

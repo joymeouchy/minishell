@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/14 17:49:40 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:26:47 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 void    init_stack(t_list *list, t_stack *stack)
 {
+    if (list == NULL || stack == NULL || list->list_size <= 0)
+        return;
+    stack->stack = malloc(sizeof(t_stack_element) * list->list_size + 1);
+    if (!stack->stack)
+        return;
     stack->top = -1;
-    stack->stack = (char *)malloc(sizeof(char *) * list->list_size + 1);
-    stack->stack[list->list_size].data = '\0';
-    stack->stack[list->list_size].token = -1;
     if (!stack->stack)
         return;
 }
 
 void push(char *data, e_tokens token, t_stack *stack)
 {
-    stack->top++;
+    stack->top += 1;
     stack->stack[stack->top].data = data;
     stack->stack[stack->top].token = token;
 }
@@ -43,9 +45,9 @@ void print_stack(t_stack *stack)
 
     i = 0;
     printf("\nstack:\n");
-    while(stack->stack[i].data )
+    while(i <= stack->top)
     {
-        printf("stack element is:%s\n", stack->stack[i].data);
+        printf("stack element is:%s, token is: %d\n", stack->stack[i].data, stack->stack[i].token);
         i++;
     }
 }
