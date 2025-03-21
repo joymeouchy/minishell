@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/20 23:04:14 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:23:49 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_inorder(t_tree_node *node)
 	print_inorder(node->right);
 }
 
-t_tree_node	*create_tree_node(char *data, e_tokens token)
+t_tree_node	*create_tree_node(char *data, e_tokens token, bool *flag_inserted_node)
 {
 	t_tree_node	*new_node;
 
@@ -39,77 +39,41 @@ t_tree_node	*create_tree_node(char *data, e_tokens token)
 	new_node->token = token;
 	new_node->left = NULL;
 	new_node->right = NULL;
+	*flag_inserted_node = true;
 	return (new_node);
 }
 
-t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
+t_tree_node *insert(t_tree_node *node, char *data, e_tokens token, bool *flag_inserted_node)
 {
     if (node == NULL){
-        return (create_tree_node(data, token));}
+        return (create_tree_node(data, token, flag_inserted_node));}
     
-	if (node->right == NULL || (node->right->token != 7 && node->right->token != 8)){
-		node->right = insert(node->right, data, token);}
-	if (node->left == NULL || (node->left->token != 7 && node->left->token != 8)){
-		node->left = insert(node->left, data, token);}
+	if (*flag_inserted_node == false && (node->right == NULL || (node->right->token != 7 && node->right->token != 8)))
+	{
+		node->right = insert(node->right, data, token, flag_inserted_node);
+	}
+	if (*flag_inserted_node == false && (node->left == NULL || (node->left->token != 7 && node->left->token != 8))){
+		node->left = insert(node->left, data, token, flag_inserted_node);}
 	if (node->token == 8 || node->token == 7){
 		return (NULL);}
     return (node);
 }
 
-// t_tree_node *insert(t_tree_node *node, char *data, e_tokens token)
-// {
-//     if (node == NULL)
-//         return create_tree_node(data, token);
-//     if (token != 7 && token != 8)
-//     {
-//         if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8)) 
-//             node->right = insert(node->right, data, token);
-//         else if (node->left == NULL)
-//             node->left = insert(node->right, data, token);
-//     } 
-//     else
-//     {
-//         if (node->right == NULL || (node->right->token != 7 &&  node->right->token != 8))
-//             node->right = insert(node->right, data, token);
-//         else if (node->left != NULL && )
-//             node->left = insert(node->left, data, token);
-//     }
-//     return node;
-// }
-
-// t_tree_node	*insert(t_tree_node *node, char *data, e_tokens token)
-// {
-// 	if (node == NULL)
-// 		return (create_tree_node(data, token));
-// 	if (token == WORD || token == TILDE)
-// 	{
-// 		if (node->right == NULL)
-// 			node->right = insert(node->right, data, token);
-// 		else
-// 			node->left = insert(node->left, data, token);
-// 	}
-// 	else
-// 	{
-// 		if (node->right == NULL)
-// 			node->right = insert(node->right, data, token);
-// 		else
-// 			node->left = insert(node->left, data, token);
-// 	}
-// 	return (node);
-// }
-
 void	stack_to_tree(t_stack *stack)
 {
 	t_tree	*tree;
+	bool	flag_inserted_node;
 
 	tree = init_tree();
+	flag_inserted_node = false;
 	tree->root = create_tree_node(stack->stack[stack->top].data,
-			stack->stack[stack->top].token);
+			stack->stack[stack->top].token, &flag_inserted_node);
 	stack->top--;
 	while (stack->top > -1)
 	{
+		flag_inserted_node = false;
 		tree->root = insert(tree->root, stack->stack[stack->top].data,
-				stack->stack[stack->top].token);
+				stack->stack[stack->top].token, &flag_inserted_node);
 		stack->top--;
 	}
 	printf("tree:\n");
