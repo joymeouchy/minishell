@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/21 14:21:05 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/03/31 20:26:12 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+#include <fcntl.h>
+
 
 typedef enum e_tokens
 {
@@ -31,6 +33,12 @@ typedef enum e_tokens
 	WORD = 7,
 	TILDE = 8,
 }	e_tokens;
+
+typedef struct s_redir
+{
+	enum e_tokens token;
+	char *file;
+}t_redir;
 
 typedef struct s_envp
 {
