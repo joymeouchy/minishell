@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/31 20:26:12 by root             ###   ########.fr       */
+/*   Updated: 2025/04/02 14:22:21 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h>
 # include <stdbool.h>
 #include <fcntl.h>
-
 
 typedef enum e_tokens
 {
@@ -127,4 +126,8 @@ void push(char *data, e_tokens token, t_stack *stack);
 
 void pop(t_stack *stack);
 void print_stack(t_stack *stack);
+
+//redirections//
+int handle_redir(int *tokens, char **files, int redir_count);
+
 #endif
