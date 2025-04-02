@@ -34,11 +34,11 @@ typedef enum e_tokens
 	TILDE = 8,
 }	e_tokens;
 
-typedef struct s_redir
-{
-	enum e_tokens token;
-	char *file;
-}t_redir;
+// typedef struct s_redir
+// {
+// 	enum e_tokens token;
+// 	char *file;
+// }t_redir;
 
 typedef struct s_envp
 {

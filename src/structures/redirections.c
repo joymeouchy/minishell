@@ -12,7 +12,7 @@
 
 #include "../../includes/structures.h"
 
-int handle_redir(t_redir *redirection, int redir_count)
+int handle_redir(int *tokens, char **files, int redir_count)
 {
     int fd;
     int i;
@@ -25,9 +25,9 @@ int handle_redir(t_redir *redirection, int redir_count)
     i = 0;
     while(i < redir_count)
     {
-        if(redirection[i].token == 3)
+        if(tokens[i] == 3)
         {
-            fd = open(redirection[i].file, O_RDONLY);
+            fd = open(files[i], O_RDONLY);
             if (fd == -1)
             {
                 perror("Error opening input file");
@@ -40,9 +40,9 @@ int handle_redir(t_redir *redirection, int redir_count)
             }
             close(fd);
         }
-        else if (redirection[i].token == 4)
+        else if (tokens[i] == 4)
         {
-            fd = open(redirection[i].file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+            fd = open(files[i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
             if (fd == -1)
             {
                 perror("Error opening output file");
@@ -55,9 +55,9 @@ int handle_redir(t_redir *redirection, int redir_count)
             }
             close(fd);
         }
-        else if (redirection[i].token == 6)
+        else if (tokens[i] == 6)
         {
-            fd = open(redirection[i].file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+            fd = open(files[i], O_WRONLY | O_CREAT | O_APPEND, 0644);
             if (fd == -1)
             {
                 perror("Error opening output file for append");
@@ -70,9 +70,9 @@ int handle_redir(t_redir *redirection, int redir_count)
             }
             close(fd);
         }
-        else if (redirection[i].token == 5)
+        else if (tokens[i] == 5)
         {
-            delimiter = redirection[i].file;
+            delimiter = files[i];
             line = NULL;
             len = 0;
             temp_fd = open("heredoc_temp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -81,6 +81,7 @@ int handle_redir(t_redir *redirection, int redir_count)
                 perror("Error creating temporary file for heredoc");
                 return (1);
             }
+            close(temp_fd);
         }
         i++;
     }
