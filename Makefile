@@ -11,6 +11,7 @@ SRC =   src/parser/parser.c \
 		src/parser/utils.c \
 		src/parser/tokenize.c \
 		src/parser/get_env.c \
+		src/parser/echo.c \
 		src/main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\

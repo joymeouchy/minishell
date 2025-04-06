@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/02 14:07:22 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/06 19:49:24 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int split_symbols(char *input, t_list *list, int start, int *i);
 int double_quotes_to_node(char *input, t_list *list, int start, int *i);
 int single_quotes_to_node(char *input, t_list *list, int start, int *i);
 t_list  *input_to_list(char *input);
-
+int pwd(void);
 
 ///remove_quotes.c///
 
