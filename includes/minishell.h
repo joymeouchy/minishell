@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/06 19:49:24 by root             ###   ########.fr       */
+/*   Updated: 2025/04/09 15:46:57 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	tokenize(t_list *list, t_envp *envp);
 int     ft_strcmp(char *s1, char *s2);
 //get_env.c
 t_envp *get_split_path(char **envp);
+void  env_getter(char **env_p);
 
 ///main.c///
 char	*command_line_input(void);
+void	stack_to_tree(t_stack *stack);
 
 
 

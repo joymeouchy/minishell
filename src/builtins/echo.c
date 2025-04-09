@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:58:23 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/06 20:48:19 by root             ###   ########.fr       */
+/*   Updated: 2025/04/09 16:29:13 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// void    echo(char *argv)
-// {
-//     ft_putstr_fd(argv, 1);
-//     if (argv && ft_strcmp(argv, "-n") == 1)
-//         printf("\n");
-// }
 
 int	check_n_option(const char *arg)
 {

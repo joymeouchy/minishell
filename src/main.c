@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/02 14:51:17 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/09 15:52:04 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ int	main(int argc, char **argv, char **envp)
 		if (!list || !list->head)
 			continue;;
 		print_list(list);
-		// printf("\n");
+		printf("\n");
 		expand_list(list);
-		// // printf("\nafter expand\n");
-		// // print_list(list);
-		// // printf("\n");
+		// printf("\nafter expand\n");
+		// print_list(list);
+		// printf("\n");
 		check_and_remove_quotes(list);
-		// // printf("\nafter quotes\n");
-		// // print_list(list);
+		// printf("\nafter quotes\n");
+		// print_list(list);
 		tokenize(list, env);
 		stack = shunting_yard(list);
 		print_stack(stack);
+		env_getter(envp);
 		stack_to_tree(stack);
 		if (list)
 			free_list(list);

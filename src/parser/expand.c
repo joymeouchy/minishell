@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 19:47:40 by root              #+#    #+#             */
-/*   Updated: 2025/02/06 18:03:45 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:38:52 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ char	*expand(char *str)
 			free(str);
 			return (NULL);
 		}
-		replacement = getenv(var_name);
+		replacement = (var_name);
 		if (!replacement)
 			replacement = "";
 		expanded_str = replace_variable(str, var_name, replacement, dollar_pos);
