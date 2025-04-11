@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/11 14:09:50 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/11 20:12:30 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ char	*command_line_input(void)
 	char	*input;
 
 	input = readline("Minishell$ ");
+	if (input && *input)
+		add_history(input);
 	return (input);
 }
+
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
@@ -46,11 +49,13 @@ int	main(int argc, char **argv, char **envp)
 		tokenize(list, env);
 		stack = shunting_yard(list);
 		// print_stack(stack);
-		// env_getter(envp);
+		env_getter(envp);
+		printf("\n\n\n\n");
 		tree = stack_to_tree(stack);
-		printf("tree:\n");
-		print_inorder(tree->root);
-		printf("testing echo:\n");
+		export();
+		// printf("tree:\n");
+		// print_inorder(tree->root);
+		// printf("testing echo:\n");
 		echo(tree->root);
 		if (list)
 			free_list(list);
