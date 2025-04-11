@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/21 14:23:49 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:06:23 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_tree_node *insert(t_tree_node *node, char *data, e_tokens token, bool *flag_in
     return (node);
 }
 
-void	stack_to_tree(t_stack *stack)
+t_tree	*stack_to_tree(t_stack *stack)
 {
 	t_tree	*tree;
 	bool	flag_inserted_node;
@@ -76,6 +76,7 @@ void	stack_to_tree(t_stack *stack)
 				stack->stack[stack->top].token, &flag_inserted_node);
 		stack->top--;
 	}
-	printf("tree:\n");
-	print_inorder(tree->root);
+	// printf("tree:\n");
+	// print_inorder(tree->root);
+	return (tree);
 }

@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/11 13:40:27 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:05:44 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ typedef enum e_tokens
 // }t_redir;
 
 
-typedef struct s_sigact
-{
-	void (*sa_handler)(int);
-	sigset_t sa_mask;
-	int sa_flags;	
-}t_sigact;
+// typedef struct s_sigact
+// {
+// 	void (*sa_handler)(int);
+// 	sigset_t sa_mask;
+// 	int sa_flags;	
+// }t_sigact;
 
 typedef struct s_envp
 {

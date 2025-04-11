@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/11 13:37:47 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:10:01 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,9 @@ void  env_getter(char **env_p);
 
 ///main.c///
 char	*command_line_input(void);
-void	stack_to_tree(t_stack *stack);
-
+t_tree	*stack_to_tree(t_stack *stack);
+void	print_inorder(t_tree_node *node);
+void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);
 
 #endif
