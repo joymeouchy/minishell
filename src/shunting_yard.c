@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/03/18 21:19:58 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:29:55 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_stack	*shunting_yard(t_list *list)
 	init_stack(list, cmd_stack);
 	while (temp)
 	{
-		if (temp->token == 7 || temp->token == 8)
+		if (temp->token > 0)
 			push(temp->data, temp->token, stack);
 		else
 		{

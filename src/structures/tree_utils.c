@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/11 14:06:23 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:31:46 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	print_inorder(t_tree_node *node)
 {
 	if (node == NULL)
 		return ;
-	print_inorder(node->left);
 	printf("Data: %s, Token: %d\n", node->data, node->token);
+	print_inorder(node->left);
 	print_inorder(node->right);
 }
 
@@ -80,3 +80,26 @@ t_tree	*stack_to_tree(t_stack *stack)
 	// print_inorder(tree->root);
 	return (tree);
 }
+// t_node	*list_to_tree(t_node *root)
+// {
+// 	if (!root)
+// 		return (NULL);
+// 	if (root->tok != NOT)
+// 	{
+// 		root->rchild = list_to_tree(root->next);
+// 		root->lchild = list_to_tree(root->next);
+// 	}
+// 	if (root->tok == NOT)
+// 	{
+// 		if (root->lchild && root->rchild)
+// 		{
+// 			root->lchild->rchild = root->rchild;
+// 			root->rchild->lchild = root->lchild;
+// 			if (root->rchild->rchild)
+// 				root->lchild->rchild = root->rchild->rchild;
+// 		}
+// 		root->rchild = NULL;
+// 		root->lchild = NULL;
+// 	}
+// 	return (root);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/11 20:12:30 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/14 13:35:30 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	main(int argc, char **argv, char **envp)
 		// print_list(list);
 		tokenize(list, env);
 		stack = shunting_yard(list);
-		// print_stack(stack);
-		env_getter(envp);
+		print_stack(stack);
+		// env_getter(envp);
 		printf("\n\n\n\n");
 		tree = stack_to_tree(stack);
-		export();
-		// printf("tree:\n");
-		// print_inorder(tree->root);
+		// export();
+		printf("tree:\n");
+		print_inorder(tree->root);
 		// printf("testing echo:\n");
-		echo(tree->root);
+		// echo(tree->root);
 		if (list)
 			free_list(list);
 		if (stack)
