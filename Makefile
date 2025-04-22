@@ -15,7 +15,7 @@ SRC =   src/parser/parser.c \
 		src/builtins/pwd.c \
 		src/builtins/env.c \
 		src/builtins/export.c \
-		src/main.c\
+		src/parsing_main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
 		src/structures/stack_utils.c\
