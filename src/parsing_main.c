@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/19 01:02:56 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/22 10:54:27 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,29 +68,32 @@
 // 	return (0);
 // }
 #include <errno.h>
+#include <signal.h>
+#define _GNU_SOURCE
 void myhandler(int sigtype)
 {
 	if(sigtype == 2)
 	{
-		write(1,"\n",1);
+    // write(1, "hihi\n", 1);
+    // rl_replace_line("",1);
+    // rl_on_new_line();
+    // rl_redisplay();
+		return ;
 	}
-	if(sigtype == 3)
-		printf("control backslash baby");
 }
 int main ()
 {
     struct sigaction action;
 
-
-
-    (action).sa_handler = myhandler;
+    action.sa_handler = myhandler;
     sigemptyset(&action.sa_mask);
     action.sa_flags = 0;
-    if (sigaction(SIGINT, &action, NULL) || sigaction(SIGQUIT, &action, NULL))
-        printf("hiiiiiiiiiiiiiiiiiiiiii");
+    
+    // sigaction(SIGINT, &action, NULL);
+
     while(1)
     {
-		readline("Minishell$ ");
+      readline("Minishell$ ");
     }
 	return (0);
 }
