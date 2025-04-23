@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/23 17:24:07 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/23 18:47:41 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,20 @@ int	main(int argc, char **argv, char **envp)
 	t_envp *env;
 	t_stack *stack;
 	t_tree *tree;
-	
+  
+	signal_init();
 	env = get_split_path(envp);
 	while (1)
 	{
 		list = input_to_list(command_line_input());
-		if (!list || !list->head)
-			continue;;
-		// print_list(list);
+		if (!list)
+    {
+      write(1, "exit", 5);
+			exit(1);
+    }
+    if (!list->head)
+      continue;
+      // print_list(list);
 		// printf("\n");
 		expand_list(list);
 		// printf("\nafter expand\n");
@@ -61,41 +67,11 @@ int	main(int argc, char **argv, char **envp)
 		print_inorder(tree->root);
 		// printf("testing echo:\n");
 		// echo(tree->root);
-		// if (list)
-		// 	free_list(list);
-		// if (stack)
-		// 	free_stack(stack);
+		if (list)
+			free_list(list);
+		if (stack)
+			free_stack(stack);
 	}
 	free(env);
 	return (0);
 }
-// #include <errno.h>
-// #include <signal.h>
-// #define _GNU_SOURCE
-// void myhandler(int sigtype)
-// {
-// 	if(sigtype == 2)
-// 	{
-//     // write(1, "hihi\n", 1);
-//     // rl_replace_line("",1);
-//     // rl_on_new_line();
-//     // rl_redisplay();
-// 		return ;
-// 	}
-// }
-// int main ()
-// {
-//     struct sigaction action;
-
-//     action.sa_handler = myhandler;
-//     sigemptyset(&action.sa_mask);
-//     action.sa_flags = 0;
-    
-//     // sigaction(SIGINT, &action, NULL);
-
-//     while(1)
-//     {
-//       readline("Minishell$ ");
-//     }
-// 	return (0);
-// }

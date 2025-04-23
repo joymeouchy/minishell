@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/23 17:19:06 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/23 18:10:48 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
+#include <errno.h>
+#include <signal.h>
+#define _GNU_SOURCE
 
 ///parser.c///
 
@@ -66,5 +69,6 @@ void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);
 int export(void);
 int unset(t_tree *root);
+void signal_init();
 
 #endif

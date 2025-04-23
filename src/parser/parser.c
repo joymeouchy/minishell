@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/02/08 19:55:44 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/23 18:44:44 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ t_list	*input_to_list(char *input)
 	int		i;
 	int		start;
 
-	if (*input == '\0' || input == NULL)
-		return (free(input), NULL);
+	if (input == NULL)
+		return (NULL);
 	i = 0;
 	list = init_list();
 	start = i;
@@ -123,6 +123,7 @@ t_list	*input_to_list(char *input)
 		if (input[i] == '\0' && i != start)
 			insert_at_end_list(list, ft_substr(input, start, i - start));
 	}
-	free(input);
+	if (input)
+		free(input);
 	return (list);
 }

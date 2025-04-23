@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 16:30:41 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/19 00:35:08 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/23 18:22:53 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,19 @@
 
 void myhandler(int sigtype)
 {
-    printf("got signal%dd\n", sigtype);
+	if(sigtype == 2)
+	{
+        write(1, "\n", 1);
+        rl_replace_line("",1);
+        rl_on_new_line();
+        rl_redisplay();
+	}
 }
-int main ()
-{
-    struct sigaction action;
-    int n, p[2];
-    char buf[1000];
-
-    pipe(p);
-    (action).sa_handler = myhandler();
-    sigemptyset(&action.sa_mask);
-    action.sa_flags = 0;
-    if (sigaction(SIGINT, &action, NULL) || sigaction(SIGQUIT, &action, NULL) || sigaction(SIGTERM, &action, NULL))
-        printf("hiiiiiiiiiiiiiiiiiiiiii");
-    while(1)
+void signal_init()
+{    
+    if (signal(SIGINT, myhandler) == SIG_ERR || signal(SIGQUIT, SIG_IGN) == SIG_ERR)
     {
-        n = read(p[0], buf, 1000);
-        printf("read returned %d, errno = %d\n", n, errno);
+        write(1, "error\n", 1);
+        exit(1);
     }
-	return (0);
 }
