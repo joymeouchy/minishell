@@ -6,13 +6,12 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/23 18:10:48 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:08:23 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
 
 # include "../libft/libft.h"
 # include "structures.h"
@@ -20,9 +19,9 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
-#include <errno.h>
-#include <signal.h>
-#define _GNU_SOURCE
+# include <errno.h>
+# include <signal.h>
+# define _GNU_SOURCE
 
 ///parser.c///
 
@@ -69,6 +68,10 @@ void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);
 int export(void);
 int unset(t_tree *root);
-void signal_init();
+void signals();
+void	parsing_main(t_envp *env);
+
+
+
 
 #endif

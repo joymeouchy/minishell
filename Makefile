@@ -16,16 +16,17 @@ SRC =   src/parser/parser.c \
 		src/builtins/env.c \
 		src/builtins/export.c \
 		src/builtins/unset.c \
-		src/parsing_main.c\
+		src/parser/parsing_main.c\
 		src/structures/free_structures.c \
 		src/structures/linked_list_utils.c\
 		src/structures/stack_utils.c\
         src/structures/linked_list_utils2.c\
-		src/shunting_yard.c\
+		src/parser/shunting_yard.c\
         src/structures/tree_utils.c\
 		src/structures/redirections.c\
 		src/execution/signals.c\
-		
+		src/main.c\
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

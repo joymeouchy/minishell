@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 16:30:41 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/23 19:07:37 by jmeouchy         ###   ########.fr       */
+/*   Created: 2025/04/23 18:56:20 by jmeouchy          #+#    #+#             */
+/*   Updated: 2025/04/23 19:13:04 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "includes/minishell.h"
 
-void sig_handler(int sigtype)
+int	main(int argc, char **argv, char **envp)
 {
-	if(sigtype == 2)
+	(void)argc;
+	(void)argv;
+    t_envp *env;
+
+    signals();
+	env = get_split_path(envp);
+      
+	while (1)
 	{
-        write(1, "\n", 1);
-        rl_replace_line("",1);
-        rl_on_new_line();
-        rl_redisplay();
-	}
-}
-void signals()
-{    
-    if (signal(SIGINT, sig_handler) == SIG_ERR || signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-    {
-        write(1, "error\n", 1);
-        exit(1);
+        parsing_main(env);
     }
+    free(env);
+    return (0);
 }
