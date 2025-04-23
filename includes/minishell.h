@@ -6,7 +6,7 @@
 /*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/11 19:53:10 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/04/23 17:19:06 by lkhoury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	print_inorder(t_tree_node *node);
 void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);
 int export(void);
+int unset(t_tree *root);
 
 #endif
