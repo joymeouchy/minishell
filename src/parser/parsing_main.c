@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/24 10:01:54 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:23:43 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parsing_main(t_envp *env)
 	list = input_to_list(command_line_input());
 	if (!list)
 	{
-		write(1, "exit", 5);
+		write(1, "exit\n", 5);
 		exit(1);
 	}
 	if (!list->head)

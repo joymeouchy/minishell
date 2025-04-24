@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/24 11:17:53 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:37:08 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	print_inorder(t_tree_node *node)
 {
 	if (node == NULL)
 		return ;
-	printf("Data: %s, Token: %d\n", node->data, node->token);
 	print_inorder(node->left);
+	printf("Data: %s, Token: %d\n", node->data, node->token);
 	print_inorder(node->right);
 }
 
@@ -65,12 +65,15 @@ bool check_builtin_cmd(t_tree_node *node)
 		return (true);
 }
 
-bool check_right_word_branches(t_tree_node *node, t_tree_node *node_direction)
+bool check_word_cmd_branches(t_tree_node *node, t_tree_node *node_direction)
 {
 	if (node == NULL)
 		return (true);
-	if (node->token == WORD && node_direction != NULL)
-		return (false);
+	// if ((node->token == WORD || node->token == COMMAND || node->token == BUILT_IN)
+	// 	&& (current_token == COMMAND || current_token == BUILT_IN))
+	// 	return (false);
+	if ((node->token == WORD || node->token == COMMAND || node->token == BUILT_IN) && node_direction != NULL)
+		return (true);
 	else
 		return (true);
 }
@@ -81,20 +84,16 @@ t_tree_node *insert(t_tree_node *node, char *data, e_tokens token, bool *flag_in
 	{
         return (create_tree_node(data, token, flag_inserted_node));
 	}
-	// printf("node->right->token:%d\n\n", node->right->token);
-	// // write(1,node->right->token, 1);
 	if (*flag_inserted_node == false
 		&& check_pipe_precendence(token, node->right)
-		&& check_builtin_cmd(node->right)
-		&& check_right_word_branches(node, node->left)
+		&& check_word_cmd_branches(node, node->left)
 		)
 	{
 		node->right = insert(node->right, data, token, flag_inserted_node);
 	}
 	if (*flag_inserted_node == false
 		&& check_pipe_precendence(token, node->left)
-		&& check_builtin_cmd(node->left)
-		&& check_right_word_branches(node, node->right)
+		&& check_word_cmd_branches(node, node->right)
 	)
 	{
 		node->left = insert(node->left, data, token, flag_inserted_node);
