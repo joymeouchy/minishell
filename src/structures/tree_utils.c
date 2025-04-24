@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/23 19:10:10 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:17:53 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,62 @@ t_tree_node	*create_tree_node(char *data, e_tokens token, bool *flag_inserted_no
 	return (new_node);
 }
 
+bool check_pipe_precendence(e_tokens current_token, t_tree_node *node)
+{
+	if (node == NULL)
+		return (true);
+	if (current_token == PIPE && current_token < node->token)
+		return (false);
+	else
+		return (true);
+	
+}
+
+
+bool check_builtin_cmd(t_tree_node *node)
+{
+	if (node == NULL)
+		return (true);
+	if (node->token == BUILT_IN || node->token == COMMAND)
+		return (false);
+	else
+		return (true);
+}
+
+bool check_right_word_branches(t_tree_node *node, t_tree_node *node_direction)
+{
+	if (node == NULL)
+		return (true);
+	if (node->token == WORD && node_direction != NULL)
+		return (false);
+	else
+		return (true);
+}
+
 t_tree_node *insert(t_tree_node *node, char *data, e_tokens token, bool *flag_inserted_node)
 {
-    if (node == NULL){
-        return (create_tree_node(data, token, flag_inserted_node));}
-    
-	if (*flag_inserted_node == false && (node->right == NULL || (node->right->token != 7 && node->right->token != 8)))
+    if (node == NULL)
+	{
+        return (create_tree_node(data, token, flag_inserted_node));
+	}
+	// printf("node->right->token:%d\n\n", node->right->token);
+	// // write(1,node->right->token, 1);
+	if (*flag_inserted_node == false
+		&& check_pipe_precendence(token, node->right)
+		&& check_builtin_cmd(node->right)
+		&& check_right_word_branches(node, node->left)
+		)
 	{
 		node->right = insert(node->right, data, token, flag_inserted_node);
 	}
-	if (*flag_inserted_node == false && (node->left == NULL || (node->left->token != 7 && node->left->token != 8))){
-		node->left = insert(node->left, data, token, flag_inserted_node);}
-	if (node->token == 8 || node->token == 7){
-		return (NULL);}
+	if (*flag_inserted_node == false
+		&& check_pipe_precendence(token, node->left)
+		&& check_builtin_cmd(node->left)
+		&& check_right_word_branches(node, node->right)
+	)
+	{
+		node->left = insert(node->left, data, token, flag_inserted_node);
+	}
     return (node);
 }
 

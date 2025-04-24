@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/23 19:20:58 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 10:01:54 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	parsing_main(t_envp *env)
 	// print_list(list);
 	// printf("\n");
 	check_and_remove_quotes(list);
-	// printf("\nafter quotes\n");
-	// print_list(list);
 	tokenize(list, env);
+	// printf("\nafter tokenization\n");
+	// print_list(list);
 	stack = shunting_yard(list);
 	print_stack(stack);
 	// env_getter(envp);

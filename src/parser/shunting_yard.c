@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shunting_yard.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/14 13:29:55 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:28:50 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ t_stack	*shunting_yard(t_list *list)
 {
 	t_stack		*stack;
 	t_stack		*cmd_stack;
+	// t_stack		*pipe_stack;
 	t_list_node	*temp;
 
 	temp = list->head;
 	stack = malloc(sizeof(t_stack));
 	cmd_stack = malloc(sizeof(t_stack));
+	// pipe_stack = malloc(sizeof(t_stack));
 	init_stack(list, stack);
 	init_stack(list, cmd_stack);
+	// init_stack(list, pipe_stack);
 	while (temp)
 	{
 		if (temp->token > 0)

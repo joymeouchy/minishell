@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:23:04 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/02/17 13:11:32 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/24 09:41:08 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,15 +154,20 @@ int is_command(char *cmd, t_envp *envp)
 void tokenize(t_list *list, t_envp *envp)
 {
     t_list_node *temp;
-	
+	int flag_command = false;
 	temp = list->head;
+	
     while (temp)
     {
         if (!temp->data)
             return;
         if (temp->data[0] == '|')
+		{
             temp->token = PIPE;
-        else if (temp->data[0] == '<' && temp->data[1] == '<')
+			flag_command = false;
+		
+		}
+		else if (temp->data[0] == '<' && temp->data[1] == '<')
             temp->token = LEFT_D_REDIRECTION;
         else if (temp->data[0] == '>' && temp->data[1] == '>')
             temp->token = RIGHT_D_REDIRECTION;
@@ -172,10 +177,16 @@ void tokenize(t_list *list, t_envp *envp)
             temp->token = RIGHT_REDIRECTION;
         else if (temp->data[0] == '~')
             temp->token = TILDE;
-        else if (check_builtin(temp->data))
+        else if (!flag_command && check_builtin(temp->data))
+		{
             temp->token = BUILT_IN;
-        else if (is_command(temp->data, envp))
+			flag_command = true;
+		}
+		else if (!flag_command && is_command(temp->data, envp))
+		{
             temp->token = COMMAND;
+			flag_command = true;
+		}
         else
             temp->token = WORD;
         temp = temp->next;
