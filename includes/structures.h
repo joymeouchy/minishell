@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/23 19:09:32 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/26 15:01:05 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ t_list_node	*get_node_at_index(t_list *list, int index);
 ///tree_utils.c///
 void printInorder(t_tree_node *node);
 t_tree *init_tree(void);
-t_tree_node     *create_tree_node(char *data, e_tokens token, bool *flag_inserted_node);
+// t_tree_node     *create_tree_node(char *data, e_tokens token, bool *flag_inserted_node);
 t_tree_node *insert( t_tree_node *node, char *data, e_tokens token, bool *flag_inserted_node);
 // void stack_to_tree(t_stack *stack);
 ///stack functions//

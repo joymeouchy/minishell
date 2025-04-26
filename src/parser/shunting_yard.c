@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 12:39:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/26 12:03:53 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/26 15:04:59 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,69 @@ void	push_stack_to_other(t_stack *src, t_stack *dst)
 	}
 }
 
+// t_stack	*shunting_yard(t_list *list)
+// {
+// 	t_stack		*stack;
+// 	t_stack		*cmd_stack;
+// 	t_list_node	*temp;
+
+// 	temp = list->head;
+// 	stack = malloc(sizeof(t_stack));
+// 	cmd_stack = malloc(sizeof(t_stack));
+// 	init_stack(list, stack);
+// 	init_stack(list, cmd_stack);
+// 	while (temp)
+// 	{
+// 		if (temp->token > 0)
+// 			push(temp->data, temp->token, stack);
+// 		else
+// 		{
+// 			if (cmd_stack->stack[cmd_stack->top].token == 0)
+// 				push_stack_to_other(cmd_stack, stack);
+// 			push(temp->data, temp->token, cmd_stack);
+// 		}
+// 		temp = temp->next;
+// 	}
+// 	if (cmd_stack->top > -1)
+// 		push_stack_to_other(cmd_stack, stack);
+// 	free_stack(cmd_stack);
+// 	return (stack);
+// }
+
 t_stack	*shunting_yard(t_list *list)
 {
 	t_stack		*stack;
- 	t_stack		*cmd_stack;
- 	t_list_node	*temp;
- 
- 	temp = list->head;
- 	stack = malloc(sizeof(t_stack));
- 	cmd_stack = malloc(sizeof(t_stack));
- 	init_stack(list, stack);
- 	init_stack(list, cmd_stack);
- 	while (temp)
- 	{
- 		if (temp->token > 0)
- 			push(temp->data, temp->token, stack);
- 		else
- 		{
- 			if (cmd_stack->stack[cmd_stack->top].token == 0)
- 				push_stack_to_other(cmd_stack, stack);
- 			push(temp->data, temp->token, cmd_stack);
- 		}
- 		temp = temp->next;
- 	}
- 	if (cmd_stack->top > -1)
- 		push_stack_to_other(cmd_stack, stack);
- 	free_stack(cmd_stack);
- 	return (stack);
+	t_stack		*cmd_stack;
+	t_stack		*word_stack;
+	t_list_node	*temp;
+
+	temp = list->head;
+	stack = malloc(sizeof(t_stack));
+	cmd_stack = malloc(sizeof(t_stack));
+	word_stack = malloc(sizeof(t_stack));
+	init_stack(list, stack);
+	init_stack(list, cmd_stack);
+	init_stack(list, word_stack);
+	while (temp)
+	{
+		if (temp->token > 0)
+			push(temp->data, temp->token, word_stack);
+		else
+		{
+			if (cmd_stack->stack[cmd_stack->top].token == 0)
+			{
+				push_stack_to_other(word_stack, stack);
+				push_stack_to_other(cmd_stack, stack);
+			}
+			push(temp->data, temp->token, cmd_stack);
+		}
+		temp = temp->next;
+	}
+	if (word_stack->top > -1)
+		push_stack_to_other(word_stack, stack);
+	if (cmd_stack->top > -1)
+		push_stack_to_other(cmd_stack, stack);
+	free_stack(cmd_stack);
+	free_stack(word_stack);
+	return (stack);
 }
