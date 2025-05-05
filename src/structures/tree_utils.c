@@ -6,7 +6,7 @@
 /*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:05:32 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/27 14:11:11 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/04/28 12:24:47 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ t_tree_node *build_tree(t_stack *stack)
 	if (!new_node)
 		return (NULL);
 	if ((new_node->token == COMMAND || new_node->token == BUILT_IN) && stack->stack[stack->top].token != PIPE)
+	{
 		new_node->right = build_tree(stack);
+	}
 	if (new_node->token == WORD && stack->stack[stack->top].token > 6)
 		new_node->right = build_tree(stack);
 	if (new_node->token == PIPE)
