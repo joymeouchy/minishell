@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/26 15:01:05 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/06 10:36:02 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_tree_node
 {
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
+	char				*data;
 	char				*data;
 	enum e_tokens		token;
 }	t_tree_node;
