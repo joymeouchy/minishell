@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/23 19:08:23 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/05 14:15:01 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,12 @@ void	print_inorder(t_tree_node *node);
 void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);
 int export(void);
-int unset(t_tree *root);
+int unset(t_tree_node *root);
 void signals();
 void	parsing_main(t_envp *env);
 
-
-
+//exec
+void execution(t_tree_node *node);
+void exec_commands(t_tree_node *node);
 
 #endif

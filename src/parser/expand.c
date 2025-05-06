@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 19:47:40 by root              #+#    #+#             */
-/*   Updated: 2025/04/09 15:38:52 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/05/05 13:59:10 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// int	find_dollar(char *str)
-// {
-// 	int	i;
-// 	int	in_single_quote;
-// 	int	in_double_quote;
-
-// 	i = 0;
-// 	in_single_quote = 0;
-// 	in_double_quote = 0;
-// 	if (*str == '\0' || str == NULL)
-// 		return (-1);
-// 	while (str[i])
-// 	{
-// 		if (str[i] == '\'' && !in_double_quote)
-// 			in_single_quote = !in_single_quote;
-// 		else if (str[i] == '"' && !in_single_quote)
-// 			in_double_quote = !in_double_quote;
-// 		else if (str[i] == '$' && !in_single_quote)
-// 			return (i);
-// 		i++;
-// 	}
-// 	return (-1);
-// }
-
 
 int	find_dollar(char *str)
 {
@@ -129,11 +104,8 @@ char	*expand(char *str)
 	{
 		var_name = extract_variable_name(&str[dollar_pos]);
 		if (!var_name)
-		{
-			free(str);
-			return (NULL);
-		}
-		replacement = (var_name);
+			return (free(str),NULL);
+		replacement = getenv(var_name);
 		if (!replacement)
 			replacement = "";
 		expanded_str = replace_variable(str, var_name, replacement, dollar_pos);
