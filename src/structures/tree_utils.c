@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:05:32 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/04/28 12:24:47 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:22:14 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_tree_node	*create_tree_node(t_stack *stack)
 	stack->top--;
 	new_node->left = NULL;
 	new_node->right = NULL;
+	new_node->redir_args_node = NULL;
 	return (new_node);
 }
 

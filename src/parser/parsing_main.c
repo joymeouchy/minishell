@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/05 14:16:11 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/12 17:20:41 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	parsing_main(t_envp *env)
 	// export();
 	// unset(tree);
 	// printf("\n\n\n\n");
-	// printf("tree:\n");
-	// print_inorder(tree->root);
+	printf("tree:\n");
+	print_inorder(tree->root);
 	// // printf("testing echo:\n");
 	// echo(tree->root);
 	execution(tree->root);
