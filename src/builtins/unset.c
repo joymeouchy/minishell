@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:06:11 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/04/23 17:20:55 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/05/13 16:27:26 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ void	remove_var_from_env(const char *var_name)
 		j++;
 	}
 }
-int	unset(t_tree *tree)
+int	unset(t_tree_node *root)
 {
 	t_tree_node	*arg;
 
-	if (!tree || !tree->root || !tree->root->right)
+	if (!root || !root->right)
 		return (0);
-	arg = tree->root->right;
+	arg = root->right;
 	while (arg)
 	{
 		if (is_valid_var_name(arg->data))

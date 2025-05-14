@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:51:42 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/12 18:36:06 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:38:29 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,26 @@
 //     char *fd
 // }
 
-void	child(t_tree_node *node, int *pipefd)
+int	*right_node(t_tree_node *node, int *pipefd)
 {
 	int	fd;
 
-	fd = open(argv[1], O_RDONLY, 0777);
-	if (fd < 0)
-	{
-		perror("zsh");
-		exit(1);
-	}
 	dup2(fd, 0);
 	dup2(pipefd[1], 1);
 	close(pipefd[1]);
 	close(pipefd[0]);
-	ft_execute(envp, argv[2]);
+	return (pipefd);
 }
 
-void	parent(t_tree_node *node, int *pipefd)
+int	*left_node(t_tree_node *node, int *pipefd)
 {
 	int	fd;
 
-	fd = open(argv[4], O_WRONLY | O_TRUNC | O_CREAT, 0777);
-	if (fd < 0)
-	{
-		perror("zsh");
-		exit(1);
-	}
 	dup2(fd, 1);
 	dup2(pipefd[0], 0);
 	close(pipefd[0]);
 	close(pipefd[1]);
-	ft_execute(envp, argv[3]);
+	return (pipefd);
 }
 
 int	pipe_exec(t_tree_node *node)
@@ -63,8 +51,8 @@ int	pipe_exec(t_tree_node *node)
 	if (pid == -1)
 		return (1);
 	if (pid == 0)
-		child(node->left, pipefd);
+		node->right->pipefd = right_node(node->left, pipefd);
 	wait(&status);
-	parent(node->right, pipefd);
+	node->left->pipefd = left_node(node->right, pipefd);
 	return (0);
 }
