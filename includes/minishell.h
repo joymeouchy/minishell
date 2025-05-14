@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/05 14:15:01 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:32:56 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_stack *shunting_yard(t_list *list);
 void	tokenize(t_list *list, t_envp *envp);
 int     ft_strcmp(char *s1, char *s2);
 //get_env.c
-t_envp *get_split_path(char **envp);
+char **get_split_path(char **envp);
 void  env_getter(char **env_p);
 
 ///main.c///

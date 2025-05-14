@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/12 17:20:41 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:31:11 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	parsing_main(t_envp *env)
 	}
 	if (!list->head)
 		return ;
+	// print_list(list);
 	expand_list(list);
 	// printf("\nafter expand\n");
-	// print_list(list);
 	// printf("\n");
 	check_and_remove_quotes(list);
 	tokenize(list, env);
@@ -52,8 +52,8 @@ void	parsing_main(t_envp *env)
 	// export();
 	// unset(tree);
 	// printf("\n\n\n\n");
-	printf("tree:\n");
-	print_inorder(tree->root);
+	// printf("tree:\n");
+	// print_inorder(tree->root);
 	// // printf("testing echo:\n");
 	// echo(tree->root);
 	execution(tree->root);

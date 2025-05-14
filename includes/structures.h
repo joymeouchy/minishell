@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/13 12:01:24 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/14 11:28:31 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum e_tokens
 typedef struct s_envp
 {
 	char **split_path;
+	char	**environment;
 	
 }t_envp;
 
@@ -64,9 +65,11 @@ typedef struct s_tree_node
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
 	struct s_tree_node	*redir_args_node;
+	t_envp				*path;
 	int					pipefd[2];
 	char				*data;
 	enum e_tokens		token;
+	
 }	t_tree_node;
 
 typedef struct s_tree

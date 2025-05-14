@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:51:42 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/13 17:38:29 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/14 09:59:00 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //     char *fd
 // }
 
-int	*right_node(t_tree_node *node, int *pipefd)
+int	*right_node(t_tree_node *node, int pipefd[2])
 {
 	int	fd;
 
@@ -28,7 +28,7 @@ int	*right_node(t_tree_node *node, int *pipefd)
 	return (pipefd);
 }
 
-int	*left_node(t_tree_node *node, int *pipefd)
+int	*left_node(t_tree_node *node, int pipefd[2])
 {
 	int	fd;
 
