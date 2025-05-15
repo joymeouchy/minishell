@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/14 10:31:11 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:10:50 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	parsing_main(t_envp *env)
 	// print_stack(stack);
 	// env_getter(envp);
 	// printf("\n\n\n\n");
-	tree = stack_to_tree(stack);
+	tree = stack_to_tree(stack, env);
 	// export();
 	// unset(tree);
 	// printf("\n\n\n\n");

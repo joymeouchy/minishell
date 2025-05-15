@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:04:58 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/14 11:30:21 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:46:15 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,55 @@ char *get_path_with_command(t_tree_node *node)
 	return (NULL);
 }
 
+char **fill_arguments(t_tree_node *node)
+{
+    t_tree_node *temp_node;
+    char        **args;
+    int         i;
+    
+    temp_node = node;
+    i = 0;
+    while(temp_node)
+    {
+        i++;
+        temp_node = temp_node->right;
+    }
+    args = malloc(sizeof(char)* (i + 2));
+    temp_node = node;
+    i = 0;
+    while(temp_node)
+    {
+        args[i] = temp_node->data;
+        i++;
+        temp_node = temp_node->right;
+    }
+    args[i] = NULL;
+    free(temp_node);
+    return(args);
+}
+#include <sys/wait.h>  
 void    exec_cmd(t_tree_node *node)
 {
-    t_tree_node *arg;
-    char *path;
-    int         fd;
-    
-    arg = node->right;
-    while(arg->right)
+    char        **args;
+    char        *path;
+    int         status;
+    pid_t       pid;
+
+    path = get_path_with_command(node);
+    args = fill_arguments(node);
+    pid = fork();
+    if (pid == 0)
     {
-        fd = open(arg->data ,O_WRONLY | O_TRUNC | O_CREAT | O_RDONLY, 0777);
-        if(fd < 0)
-        {
-            path = get_path_with_command(arg);
-            if (!path)
-                return ;
-            execve(path, &arg->data, arg->path->environment);
-        }
+        execve(path, args, node->path->environment);
+        perror("execve failed");
+        exit(EXIT_FAILURE);
     }
+    else if (pid > 0)
+        waitpid(pid, &status, 0);
+    else
+        perror("fork failed");
+    free(path);
+    free(args);
 }
 
 

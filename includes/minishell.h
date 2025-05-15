@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/14 11:32:56 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:59:57 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void  env_getter(char **env_p);
 
 ///main.c///
 char	*command_line_input(void);
-t_tree	*stack_to_tree(t_stack *stack);
+t_tree	*stack_to_tree(t_stack *stack, t_envp *environment);
 void	print_inorder(t_tree_node *node);
 void	echo(t_tree_node *echo_node);
 void myhandler(int sigtype);

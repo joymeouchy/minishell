@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:56:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/14 11:33:47 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:51:53 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(int argc, char **argv, char **envp)
 
     signals();
     env = malloc(sizeof(t_envp));
-    if (!env)
-        return (1);
+    if (!env){
+        return (1);}
 	env->split_path = get_split_path(envp);
     env->environment = envp;
-    
-	while (1)
+	
+    while (1)
 	{
         parsing_main(env);
     }
