@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:12:20 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/15 14:59:57 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/16 10:06:46 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <signal.h>
+# include <sys/wait.h>
 # define _GNU_SOURCE
 
 ///parser.c///
@@ -74,5 +75,8 @@ void	parsing_main(t_envp *env);
 //exec
 void execution(t_tree_node *node);
 void exec_commands(t_tree_node *node);
+
+
+void pipe_exec(t_tree_node *node);
 
 #endif

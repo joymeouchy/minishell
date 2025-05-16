@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:42:06 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/14 10:27:37 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/16 09:42:59 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,16 @@ int	split_symbols(char *input, t_list *list, int start, int *i)
 	return (start);
 }
 
+
 int	double_quotes_to_node(char *input, t_list *list, int start, int *i)
 {
-	int	flag_quotes_closed;
-
-	flag_quotes_closed = 1;
-	while (flag_quotes_closed == 1 && input[*i] != '|' && input[*i] != '<'
-		&& input[*i] != '>' && input[*i] != ' ' && input[*i] != '\0')
-	{
-		flag_quotes_closed = 0;
-		*i += 1;
-		while (input[*i] != '"' && flag_quotes_closed == 0 && input[*i] != '\0')
-			(*i)++;
-		if (input[*i] == '"')
-			flag_quotes_closed = 1;
+	(*i)++;
+	while (input[*i] != '"')
 		(*i)++;
-	}
+	(*i)++;
+	while (input[*i] != '|' && input[*i] != '<' && input[*i] != '>'
+			&& input[*i] != ' ' && input[*i] != '\0')
+		(*i)++;
 	insert_at_end_list(list, ft_substr(input, start, *i - start));
 	start = *i;
 	*(i) -= 1;
@@ -79,20 +73,13 @@ int	double_quotes_to_node(char *input, t_list *list, int start, int *i)
 
 int	single_quotes_to_node(char *input, t_list *list, int start, int *i)
 {
-	int	flag_quotes_closed;
-
-	flag_quotes_closed = 1;
-	while (flag_quotes_closed == 1 && input[*i] != '|' && input[*i] != '<'
-		&& input[*i] != '>' && input[*i] != ' ' && input[*i] != '\0')
-	{
-		flag_quotes_closed = 0;
-		*i += 1;
-		while (input[*i] != 39 && input[*i] != '\0')
-			(*i)++;
-		if (input[*i] == 39)
-			flag_quotes_closed = 1;
+	(*i)++;
+	while (input[*i] != 39)
 		(*i)++;
-	}
+	(*i)++;
+	while (input[*i] != '|' && input[*i] != '<' && input[*i] != '>'
+			&& input[*i] != ' ' && input[*i] != '\0')
+		(*i)++;
 	insert_at_end_list(list, ft_substr(input, start, *i - start));
 	start = *i;
 	*(i) -= 1;

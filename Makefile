@@ -28,6 +28,7 @@ SRC =   src/parser/parser.c \
 		src/execution/exec_commands.c\
 		src/execution/execution.c\
 		src/main.c\
+		src/execution/pipe.c\
 
 OBJ = $(SRC:.c=.o)
 
