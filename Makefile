@@ -29,6 +29,7 @@ SRC =   src/parser/parser.c \
 		src/execution/execution.c\
 		src/main.c\
 		src/execution/pipe.c\
+		src/parser/add_redir_argument.c\
 
 OBJ = $(SRC:.c=.o)
 

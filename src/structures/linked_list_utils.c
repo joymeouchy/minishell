@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkhoury <lkhoury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 06:42:48 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/03/17 20:42:56 by lkhoury          ###   ########.fr       */
+/*   Updated: 2025/05/22 08:39:46 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_list_node	*create_list_node(char *data)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	new_node->index = 0;
+	new_node->redir_arg = NULL;
 	return (new_node);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 08:16:36 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/16 09:47:24 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:06:22 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_list_node
 	struct s_list_node	*prev;
 	char				*data;
 	int					index;
+	char				*redir_arg;
 	enum e_tokens		token;
 }	t_list_node;
 
@@ -64,9 +65,9 @@ typedef struct s_tree_node
 {
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
-	struct s_tree_node	*redir_args_node;
+	char				*redir_arg;
 	t_envp				*path;
-	// int					pipefd[2];
+	int					fd[2];
 	char				*data;
 	enum e_tokens		token;
 	
@@ -82,6 +83,7 @@ typedef struct s_tree
 typedef struct s_stack_element
 {
     char *data;
+	char				*redir_arg;
     e_tokens token;
 } t_stack_element;
 
@@ -111,20 +113,18 @@ void	update_list_index(t_list_node *temp);
 t_list_node	*get_last_node(t_list *list);
 t_list_node	*get_first_node(t_list *list);
 t_list_node	*get_node_at_index(t_list *list, int index);
+void delete_node(t_list *list, t_list_node *node);
 
 ///tree functions//
 ///tree_utils.c///
 void printInorder(t_tree_node *node);
 t_tree *init_tree(void);
-// t_tree_node     *create_tree_node(char *data, e_tokens token, bool *flag_inserted_node);
 t_tree_node *insert( t_tree_node *node, char *data, e_tokens token, bool *flag_inserted_node);
 // void stack_to_tree(t_stack *stack);
 ///stack functions//
 ///stack_utils.c///
 void    init_stack(t_list *list, t_stack *stack);
-void push(char *data, e_tokens token, t_stack *stack);
-// void push(char *data, t_stack *stack);
-
+void	push(char *data, e_tokens token, char *redir_args, t_stack *stack);
 void pop(t_stack *stack);
 void print_stack(t_stack *stack);
 

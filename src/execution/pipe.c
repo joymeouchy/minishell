@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 18:51:42 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/16 10:53:24 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/17 16:22:17 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,101 @@ void right_node(t_tree_node *node, int pipefd[2])
 	exit(0); // Important: exit after execution
 }
 
-void pipe_exec(t_tree_node *node)
-{
-	int pipefd[2];
-	pid_t left_pid, right_pid;
-	int status;
-
-	if (pipe(pipefd) == -1)
-		return ;
-
-	left_pid = fork();
-	if (left_pid == -1)
-		return ;
-	if (left_pid == 0)
-		left_node(node, pipefd);
-
-	right_pid = fork();
-	if (right_pid == -1)
-		return ;
-	if (right_pid == 0)
-		right_node(node, pipefd);
 
 
-	// Parent: close pipe
-	close(pipefd[0]);
-	close(pipefd[1]);
+// void pipe_exec(t_tree_node *node)
+// {
+// 	int pipefd[2];
+// 	pid_t pid;
+// 	int status;
 
-	waitpid(left_pid, &status, 0);
-	waitpid(right_pid, &status, 0);
+// 	if (pipe(pipefd) == -1)
+// 		return ;
+
+// 	pid = fork();
+// 	if (pid == -1)
+// 		return ;
+// 	if (pid == 0)
+// 		left_node(node, pipefd);
+// 	right_node(node, pipefd);
+// 		waitpid(pid, &status, 0);
+// 	// Parent: close pipe
+// 	// close(pipefd[0]);
+// 	// close(pipefd[1]);
+// }
+
+// void pipe_exec(t_tree_node *node)
+// {
+// 	int pipefd[2];
+// 	pid_t left_pid, right_pid;
+// 	int status;
+
+// 	if (pipe(pipefd) == -1)
+// 		return ;
+
+// 	left_pid = fork();
+// 	if (left_pid == -1)
+// 		return ;
+// 	if (left_pid == 0)
+// 		left_node(node, pipefd);
+
+// 	right_pid = fork();
+// 	if (right_pid == -1)
+// 		return ;
+// 	if (right_pid == 0)
+// 		right_node(node, pipefd);
+	
+// 	// Parent: close pipe
+// 	close(pipefd[0]);
+// 	close(pipefd[1]);
+
+// 	waitpid(left_pid, &status, 0);
+// 	waitpid(right_pid, &status, 0);
 
 	
+// }
+
+
+void pipe_exec(t_tree_node *node)
+{
+    int pipefd[2];
+    pid_t left_pid, right_pid;
+
+    if (pipe(pipefd) == -1)
+        return ;
+
+    left_pid = fork();
+    if (left_pid == -1)
+        return ;
+    if (left_pid == 0)
+    {
+        // Left: write to pipe
+        dup2(pipefd[1], STDOUT_FILENO);
+        close(pipefd[0]);
+        close(pipefd[1]);
+
+        execution(node->right); // Can recurse into another pipe or command
+        exit(0);
+    }
+
+    right_pid = fork();
+    if (right_pid == -1)
+        return ;
+    if (right_pid == 0)
+    {
+        // Right: read from pipe
+        dup2(pipefd[0], STDIN_FILENO);
+        close(pipefd[1]);
+        close(pipefd[0]);
+
+        execution(node->left); // Can recurse into another pipe or command
+        exit(0);
+    }
+
+    // Parent: close pipe ends
+    close(pipefd[0]);
+    close(pipefd[1]);
+
+    waitpid(left_pid, NULL, 0);
+    waitpid(right_pid, NULL, 0);
 }

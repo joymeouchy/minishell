@@ -6,7 +6,7 @@
 /*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/16 10:07:39 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:30:20 by jmeouchy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,17 @@ void	parsing_main(t_envp *env)
 	}
 	if (!list->head)
 		return ;
-	// print_list(list);
 	expand_list(list);
-	// printf("\nafter expand\n");
-	// printf("\n");
 	check_and_remove_quotes(list);
 	tokenize(list, env);
-	// printf("\nafter tokenization\n");
+	add_arg_to_redir(list);
 	// print_list(list);
 	stack = shunting_yard(list);
 	// print_stack(stack);
-	// env_getter(envp);
-	// printf("\n\n\n\n");
 	tree = stack_to_tree(stack, env);
-	// export();
-	// unset(tree);
-	// printf("\n\n\n\n");
-	// printf("tree:\n");
-	// print_inorder(tree->root);
-	// // printf("testing echo:\n");
-	// echo(tree->root);
-	execution(tree->root);
+	printf("tree:\n");
+	print_inorder(tree->root);
+	// execution(tree->root);
 	if (list)
 		free_list(list);
 	if (stack)
