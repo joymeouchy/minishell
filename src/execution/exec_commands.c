@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 21:04:58 by jmeouchy          #+#    #+#             */
-/*   Updated: 2025/05/15 15:46:15 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/22 21:23:49 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void exec_builtin(t_tree_node *node)
     // else if (ft_strcmp(node->data, "env"))
         //TO-DO CHECK ENV
     else if (ft_strcmp(node->data, "export") == 0)
-        export(); //TO-DO MAKE EXPORT WORK WITH ARGS
+        export(node, node->path); //TO-DO MAKE EXPORT WORK WITH ARGS
     else if (ft_strcmp(node->data, "pwd") == 0)
         pwd(); //TO-DO 
     else if (ft_strcmp(node->data, "unset") == 0)

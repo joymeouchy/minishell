@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeouchy <jmeouchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 11:46:19 by lkhoury           #+#    #+#             */
-/*   Updated: 2025/05/22 09:30:20 by jmeouchy         ###   ########.fr       */
+/*   Updated: 2025/05/22 21:23:36 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	parsing_main(t_envp *env)
 	stack = shunting_yard(list);
 	// print_stack(stack);
 	tree = stack_to_tree(stack, env);
-	printf("tree:\n");
-	print_inorder(tree->root);
-	// execution(tree->root);
+	// printf("tree:\n");
+	// print_inorder(tree->root);
+	execution(tree->root);
 	if (list)
 		free_list(list);
 	if (stack)
